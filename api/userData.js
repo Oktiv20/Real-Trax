@@ -88,20 +88,20 @@ const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getUserByFBKey = (firebaseKey) => new Promise((resolve, reject) => {
-  // Make a GET request to the Firebase Realtime Database to retrieve user data that matches the `firebaseKey` value
-  fetch(`${endpoint}/users/${firebaseKey}.json`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    // Parse the response body as JSON
-    .then((response) => response.json())
-    // Resolve the Promise with the user object found in the data
-    .then((data) => resolve(data))
-    .catch(reject);
-});
+// const getUserByFBKey = (firebaseKey) => new Promise((resolve, reject) => {
+//   // Make a GET request to the Firebase Realtime Database to retrieve user data that matches the `firebaseKey` value
+//   fetch(`${endpoint}/users/${firebaseKey}.json`, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   })
+//     // Parse the response body as JSON
+//     .then((response) => response.json())
+//     // Resolve the Promise with the user object found in the data
+//     .then((data) => resolve(data))
+//     .catch(reject);
+// });
 
 const getArtist = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json?orderBy="isEngineer"&equalTo=false`, {
@@ -148,5 +148,5 @@ export {
   getSingleUser,
   getArtist,
   // getEngineer,
-  getUserByFBKey,
+  // getUserByFBKey,
 };

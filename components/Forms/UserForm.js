@@ -46,7 +46,7 @@ export default function UserForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateUser(formInfo).then(() => router.push('/profile'));
+      updateUser(formInfo).then(() => router.push('/'));
     } else {
       const payload = { ...formInfo, uid };
       createUser(payload).then(({ name }) => {
@@ -79,27 +79,27 @@ export default function UserForm({ obj }) {
 
       {/* FIRST NAME INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
-        <Form.Control type="text" placeholder="Enter your first name" name="firstName" value={formInfo.firstName} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Enter your first name" name="firstName" value={formInfo.firstName || ''} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* LAST NAME INPUT  */}
       <FloatingLabel controlId="floatingInput2" label="Last Name" className="mb-3">
-        <Form.Control type="text" placeholder="Enter your last name" name="lastName" value={formInfo.lastName} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Enter your last name" name="lastName" value={formInfo.lastName || ''} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* EMAIL INPUT  */}
       <FloatingLabel controlId="floatingInput3" label="Email" className="mb-3">
-        <Form.Control type="email" placeholder="Enter Email" name="email" value={formInfo.email} onChange={handleChange} required />
+        <Form.Control type="email" placeholder="Enter Email" name="email" value={formInfo.email || ''} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* PHONE NUMBER INPUT  */}
       <FloatingLabel controlId="floatingInput4" label="Phone Number" className="mb-3">
-        <Form.Control type="tel" placeholder="###-###-####" name="phoneNumber" value={formInfo.phoneNumber} onChange={handleChange} required />
+        <Form.Control type="tel" placeholder="###-###-####" name="phoneNumber" value={formInfo.phoneNumber || ''} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* TITLE INPUT  */}
       <FloatingLabel controlId="floatingInput5" label="Title" className="mb-3">
-        <Form.Control type="tel" placeholder="title" name="title" value={formInfo.title} onChange={handleChange} required />
+        <Form.Control type="tel" placeholder="title" name="title" value={formInfo.title || ''} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
@@ -126,7 +126,7 @@ export default function UserForm({ obj }) {
         && (
         <div>
           <FloatingLabel controlId="floatingInput6" label="Daily Rate" className="mb-3">
-            <Form.Control type="text" placeholder="Enter your daily rate" name="dailyRate" value={formInfo.dailyRate} onChange={handleChange} required />
+            <Form.Control type="text" placeholder="Enter your daily rate" name="dailyRate" value={formInfo.dailyRate || ''} onChange={handleChange} required />
           </FloatingLabel>
 
           {/* PREFERRED GENRE
@@ -149,11 +149,11 @@ export default function UserForm({ obj }) {
       // </FloatingLabel> */}
 
           <FloatingLabel controlId="floatingTextarea" label="Experience" className="mb-3">
-            <Form.Control type="textarea" placeholder="Experience" style={{ height: '75px' }} name="experience" value={formInfo.experience} onChange={handleChange} required />
+            <Form.Control type="textarea" placeholder="Experience" style={{ height: '75px' }} name="experience" value={formInfo.experience || ''} onChange={handleChange} required />
           </FloatingLabel>
 
           <FloatingLabel controlId="floatingInput7" label="Credits Link" className="mb-3">
-            <Form.Control type="text" placeholder="Credits Link" name="creditsLink" value={formInfo.creditsLink} onChange={handleChange} required />
+            <Form.Control type="text" placeholder="Credits Link" name="creditsLink" value={formInfo.creditsLink || ''} onChange={handleChange} required />
           </FloatingLabel>
         </div>
         )}
