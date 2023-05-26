@@ -1,4 +1,6 @@
 import { PropTypes } from 'prop-types';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
 export default function EngineerCard({ engineerObj }) {
@@ -26,7 +28,12 @@ export default function EngineerCard({ engineerObj }) {
             <br />
             Link to Credits: {engineerObj.creditsLink}
           </Card.Text>
-
+          <Link href={`/users/edit/${engineerObj.firebaseKey}`} passHref>
+            <Button variant="info">EDIT</Button>
+          </Link>
+          <Link href={`/projects/${engineerObj.firebaseKey}`} passHref>
+            <Button variant="warning">BOOKINGS</Button>
+          </Link>
         </Card.Body>
       </Card>
     </>
