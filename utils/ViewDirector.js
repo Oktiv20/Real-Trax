@@ -3,6 +3,7 @@ import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 import Signin from '../components/Signin';
 import NavBarAuth from '../components/NavBarAuth';
+import UserForm from '../components/Forms/UserForm';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
@@ -12,18 +13,20 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     return <Loading />;
   }
 
+  if (user === 'NO USER') {
+    return <UserForm user={user} />;
+  }
   // what the user should see if they are logged in
   if (user) {
     return (
       <>
-        <NavBarAuth /> {/* NavBar only visible if user is logged in and is in every view */}
+        <NavBarAuth user={user} /> {/* NavBar only visible if user is logged in and is in every view */}
         <div className="container">
           <Component {...pageProps} />
         </div>
       </>
     );
   }
-
   return <Signin />;
 };
 
