@@ -26,7 +26,7 @@ export default function ArtistCard({ artistObj }) {
           <Link href={`/users/edit/${artistObj.firebaseKey}`} passHref>
             <Button variant="info">EDIT</Button>
           </Link>
-          <Link href={`/projects/${artistObj.firebaseKey}`} passHref>
+          <Link href="/projects" passHref>
             <Button variant="warning">PROJECTS</Button>
           </Link>
         </Card.Body>

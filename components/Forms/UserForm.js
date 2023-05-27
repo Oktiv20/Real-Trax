@@ -16,8 +16,8 @@ const initialState = {
   creditsLink: '',
   isEngineer: false,
   uid: '',
-};
 
+};
 export default function UserForm({ obj }) {
   const [formInfo, setFormInfo] = useState({ ...initialState });
   const [showEngineer, setShowEngineer] = useState(false);
@@ -39,7 +39,7 @@ export default function UserForm({ obj }) {
   const handleBooleanChange = (event) => {
     const { name, value } = event.target;
     // Convert the value to a boolean and update the form input state using the setFormInput function and the previous state
-    const newValue = value === 'null' ? null : value === 'true';
+    const newValue = value === 'false' ? false : value === 'true';
     setFormInfo((prevState) => ({ ...prevState, [name]: newValue }));
   };
 
@@ -60,7 +60,6 @@ export default function UserForm({ obj }) {
       });
     }
   };
-
   return (
     <Form
       onSubmit={handleSubmit}
@@ -111,13 +110,13 @@ export default function UserForm({ obj }) {
           name="isEngineer"
           label="Engineer?"
           checked={formInfo.isEngineer}
-          onChange={handleBooleanChange}
-          // {...(e) => {
-          //   setFormInfo((prevState) => ({
-          //     ...prevState,
-          //     isEngineer: e.target.checked,
-          //   }));
-          // }}
+          onChange={(e) => {
+            setFormInfo((prevState) => ({
+              ...prevState,
+              isEngineer: e.target.checked,
+              handleBooleanChange,
+            }));
+          }}
           onClick={() => setShowEngineer(true)}
         />
       </div>
