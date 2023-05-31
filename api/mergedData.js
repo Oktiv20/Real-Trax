@@ -1,3 +1,4 @@
+import { getSingleProject } from './projectData';
 import { getSingleUser } from './userData';
 
 const viewUserInfo = (firebaseKey) => new Promise((resolve, reject) => {
@@ -6,4 +7,14 @@ const viewUserInfo = (firebaseKey) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
-export default viewUserInfo;
+const viewProjectDetails = (projectFirebaseKey) => new Promise((resolve, reject) => {
+  getSingleProject(projectFirebaseKey)
+    .then((projectObject) => {
+      getSingleUser(projectObject.uid)
+        .then((artistObject) => {
+          resolve({ artistObject, ...projectObject });
+        });
+    }).catch((error) => reject(error));
+});
+
+export { viewUserInfo, viewProjectDetails };

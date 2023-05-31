@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactSelect from 'react-select';
 import { useRouter } from 'next/router';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
@@ -11,22 +12,47 @@ const initialState = {
   email: '',
   phoneNumber: '',
   dailyRate: '',
-  preferredGenre: '',
+  preferredGenre: [],
   experience: '',
   creditsLink: '',
   isEngineer: false,
   uid: '',
-};
 
+};
 export default function UserForm({ obj }) {
   const [formInfo, setFormInfo] = useState({ ...initialState });
   const [showEngineer, setShowEngineer] = useState(false);
   const router = useRouter();
   const { setUser, uid } = useAuth();
+  // const [selectedGenres, setSelectedGenres] = useState([]);
+
+  const category = [
+    { value: 'Blues', label: 'Blues' },
+    { value: 'Classical', label: 'Classical' },
+    { value: 'Country', label: 'Country' },
+    { value: 'Folk', label: 'Folk' },
+    { value: 'Indie', label: 'Indie' },
+    { value: 'Jazz', label: 'Jazz' },
+    { value: 'Metal', label: 'Metal' },
+    { value: 'Pop', label: 'Pop' },
+    { value: 'Punk', label: 'Punk' },
+    { value: 'Rock', label: 'Rock' },
+    { value: 'R&B', label: 'R&B' },
+    { value: 'Soul', label: 'Soul' },
+  ];
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInfo(obj);
   }, [obj]);
+
+  //   const genresArray = userObj.genre?.split(',').map((genre) => ({
+  //     value: genre,
+  //     label: genre,
+  //   }));
+  //   setSelectedGenres(genresArray);
+  //   } else {
+  //   setFormInput(initialState);
+  // }, [userObj, user];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +67,14 @@ export default function UserForm({ obj }) {
     // Convert the value to a boolean and update the form input state using the setFormInput function and the previous state
     const newValue = value === 'null' ? null : value === 'true';
     setFormInfo((prevState) => ({ ...prevState, [name]: newValue }));
+  };
+
+  const handleGenreChange = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setFormInfo((prevState) => ({
+      ...prevState,
+      preferredGenre: selectedValues,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -60,7 +94,6 @@ export default function UserForm({ obj }) {
       });
     }
   };
-
   return (
     <Form
       onSubmit={handleSubmit}
@@ -73,7 +106,7 @@ export default function UserForm({ obj }) {
         borderRadius: '1em',
       }}
     >
-      <h2 className="mt-5" style={{ paddingBottom: '50px' }}>
+      <h2 className="mt-5" style={{ paddingBottom: '50px', color: 'white' }}>
         {obj.firebaseKey ? 'Update' : 'Create'} User
       </h2>
 
@@ -105,19 +138,19 @@ export default function UserForm({ obj }) {
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
       <div>
         <Form.Check
-          className="text-black mb-3"
+          className="text-white mb-3"
           type="checkbox"
           id="isEngineer"
           name="isEngineer"
           label="Engineer?"
           checked={formInfo.isEngineer}
-          onChange={handleBooleanChange}
-          // {...(e) => {
-          //   setFormInfo((prevState) => ({
-          //     ...prevState,
-          //     isEngineer: e.target.checked,
-          //   }));
-          // }}
+          onChange={(e) => {
+            setFormInfo((prevState) => ({
+              ...prevState,
+              isEngineer: e.target.checked,
+              handleBooleanChange,
+            }));
+          }}
           onClick={() => setShowEngineer(true)}
         />
       </div>
@@ -129,24 +162,17 @@ export default function UserForm({ obj }) {
             <Form.Control type="text" placeholder="Enter your daily rate" name="dailyRate" value={formInfo.dailyRate || ''} onChange={handleChange} required />
           </FloatingLabel>
 
-          {/* PREFERRED GENRE
-      // <FloatingLabel controlId="floatingInput6" label="preferredGenre" className="mb-3">
-      //   <Form.Select
-      //     type="text"
-      //     placeholder="Select your preferred genres"
-      //     name="position"
-      //     value={formInfo.preferredGenre}
-      //     onChange={handleChange}
-      //     required
-      //   >
-      //     <option value="">Select a Position</option>
-      //     <option value="Left Wing">Left Wing</option>
-      //     <option value="Right Wing">Right Wing</option>
-      //     <option value="Center">Center</option>
-      //     <option value="Defenseman">Defenseman</option>
-      //     <option value="Goalie">Goalie</option>
-      //   </Form.Select>
-      // </FloatingLabel> */}
+          {/* PREFERRED GENRE */}
+          <FloatingLabel controlId="floatingInput6" label="Preferred Genre(s)" className="mb-3">
+            <ReactSelect
+              options={category}
+              isMulti
+              closeMenuOnSelect={false}
+              value={category.filter((option) => formInfo.preferredGenre.includes(option.value))}
+              onChange={handleGenreChange}
+              onSubmit={handleSubmit}
+            />
+          </FloatingLabel>
 
           <FloatingLabel controlId="floatingTextarea" label="Experience" className="mb-3">
             <Form.Control type="textarea" placeholder="Experience" style={{ height: '75px' }} name="experience" value={formInfo.experience || ''} onChange={handleChange} required />
@@ -159,7 +185,7 @@ export default function UserForm({ obj }) {
         )}
 
       {/* SUBMIT BUTTON  */}
-      <Button variant="outline-dark" type="submit">
+      <Button variant="outline-light" type="submit">
         {obj.firebaseKey ? 'Update' : 'Create'} User
       </Button>
     </Form>
