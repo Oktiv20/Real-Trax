@@ -1,15 +1,11 @@
 import { PropTypes } from 'prop-types';
-import React from 'react';
-import Link from 'next/link';
-import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
-export default function EngineerCard({ engineerObj }) {
-  // console.log(engineerObj);
+export default function ArtistEngineerCard({ engineerObj }) {
   return (
     <>
       <Card style={{
-        width: '25rem', height: '32rem', margin: '10px', backgroundColor: 'goldenrod', color: 'black', borderRadius: '40px',
+        width: '25rem', height: '20rem', margin: '10px', backgroundColor: 'goldenrod', color: 'black', borderRadius: '40px',
       }}
       >
         <Card.Body>
@@ -22,35 +18,24 @@ export default function EngineerCard({ engineerObj }) {
           <Card.Text>
             Phone Number: {engineerObj.phoneNumber}
             <br />
-            <br />
             Email: {engineerObj.email}
-            <br />
             <br />
             Daily Rate: {engineerObj.dailyRate}
             <br />
-            <br />
             Preferred Genre: {engineerObj.preferredGenre}
-            <br />
             <br />
             Experience: {engineerObj.experience}
             <br />
             <br />
             Link to Credits: {engineerObj.creditsLink}
           </Card.Text>
-          <br />
-          <Link href={`/users/edit/${engineerObj.firebaseKey}`} passHref>
-            <Button variant="info" className="m-2">EDIT</Button>
-          </Link>
-          <Link href="/" passHref>
-            <Button variant="success" className="m-2">BOOKINGS</Button>
-          </Link>
         </Card.Body>
       </Card>
     </>
   );
 }
 
-EngineerCard.propTypes = {
+ArtistEngineerCard.propTypes = {
   engineerObj: PropTypes.shape({
     description: PropTypes.string,
     firstName: PropTypes.string,
@@ -61,7 +46,7 @@ EngineerCard.propTypes = {
     preferredGenre: PropTypes.string,
     experience: PropTypes.string,
     creditsLink: PropTypes.string,
-    isEngineer: PropTypes.bool,
+    isEngineer: PropTypes.bool.isRequired,
     firebaseKey: PropTypes.string,
     uid: PropTypes.string,
   }).isRequired,

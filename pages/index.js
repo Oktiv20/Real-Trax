@@ -1,19 +1,11 @@
-/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
-// import { Button } from 'react-bootstrap';
-// import { signOut } from '../utils/auth';
-// import UserForm from '../components/Forms/UserForm';
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { getUser } from '../api/userData';
 import EngineerCard from '../components/EngineerCard';
-// import { clientCredentials } from '../utils/client';
 import { useAuth } from '../utils/context/authContext';
 import ArtistCard from '../components/ArtistCard';
 
-// const endpoint = clientCredentials.databaseURL;
-
-function Home({ initialUser }) {
+function Home() {
   const { user } = useAuth();
   const [profileView, setProfileView] = useState({});
 
@@ -22,14 +14,15 @@ function Home({ initialUser }) {
   };
 
   useEffect(() => {
-    getUserData(initialUser.results);
-  }, [initialUser]);
+    getUserData();
+  }, []);
 
   return (
     <>
-      <h1>PROFILE PAGE</h1>
-      <div>
-        {profileView.isEngineer ? (
+      <div className="text-center my-4 text-white">
+        <h1>PROFILE PAGE</h1>
+        <hr />
+        {profileView && profileView.isEngineer ? (
           <EngineerCard key={profileView.firebaseKey} engineerObj={profileView} />
         ) : (
           <ArtistCard key={profileView.firebaseKey} artistObj={profileView} />
@@ -39,26 +32,4 @@ function Home({ initialUser }) {
   );
 }
 
-export async function getServerSideProps() {
-  const initialUser = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    dailyRate: '',
-    preferredGenre: '',
-    experience: '',
-    creditsLink: '',
-    isEngineer: false,
-    uid: '',
-  };
-  return { props: { initialUser } };
-}
-
 export default Home;
-
-Home.propTypes = {
-  initialUser: PropTypes.shape({
-    results: PropTypes.array,
-  }).isRequired,
-};
