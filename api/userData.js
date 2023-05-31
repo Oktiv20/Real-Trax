@@ -121,23 +121,20 @@ const getArtist = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// const getEngineer = () => new Promise((resolve, reject) => {
-//   fetch(`${endpoint}/users.json?orderBy="isEngineer"&equalTo=true`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       if (data) {
-//         resolve(Object.values(data));
-//       } else {
-//         resolve([]);
-//       }
-//     })
-//     .catch(reject);
-// });
+const getEngineer = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users.json?orderBy="isEngineer"&equalTo=true`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const byEngineer = Object.values(data).filter((engineer) => engineer.isEngineer);
+      resolve(byEngineer);
+    })
+    .catch(reject);
+});
 
 export {
   createUser,
@@ -147,6 +144,6 @@ export {
   deleteUser,
   getSingleUser,
   getArtist,
-  // getEngineer,
+  getEngineer,
   // getUserByFBKey,
 };
