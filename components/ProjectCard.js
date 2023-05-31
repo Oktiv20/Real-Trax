@@ -1,6 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
+import Link from 'next/link';
 import { deleteSingleProject } from '../api/projectData';
 
 function ProjectCard({ projectObj, onUpdate }) {
@@ -10,42 +11,30 @@ function ProjectCard({ projectObj, onUpdate }) {
     }
   };
 
+  // const isEngineer = projectObj.engineer === true;
+
   return (
-    <>
-      <Card style={{
-        width: '25rem', height: '28rem', margin: '10px', backgroundColor: 'black', color: 'white', borderRadius: '40px', justifyContent: 'center',
-      }}
-      >
-        <Card.Body>
-          <Card.Title>{projectObj.projectName} </Card.Title>
-          <br />
-          <Card.Text>
-            Genre: {projectObj.genre}
-            <br />
-            <br />
-            Tempo: {projectObj.tempo}
-            <br />
-            <br />
-            Key: {projectObj.songKey}
-            <br />
-            <br />
-            Instrument: {projectObj.instruments}
-            <br />
-            <br />
-            Engineer: {projectObj.engineer}
-            <br />
-            <br />
-            Notes: {projectObj.notes}
-            <br />
-            <br />
-            Project Status: Accepted, Pending, or Declined
-          </Card.Text>
-          <Button variant="danger" onClick={deleteThisProject} className="m-2">
-            DELETE
-          </Button>
-        </Card.Body>
-      </Card>
-    </>
+    <Card style={{
+      width: '18rem', height: '15rem', margin: '10px', backgroundColor: 'goldenrod', color: 'black', borderRadius: '40px', justifyContent: 'center',
+    }}
+    >
+      <Card.Body>
+        <br />
+        <Card.Title>{projectObj.projectName}</Card.Title>
+        <br />
+        <br />
+        <Link href={`/projects/${projectObj.firebaseKey}`} passHref>
+          <Button variant="success" className="m-2">VIEW</Button>
+        </Link>
+        <Link href={`/projects/edit/${projectObj.firebaseKey}`} passHref>
+          <Button variant="info" className="m-2">EDIT</Button>
+        </Link>
+        <Button variant="danger" onClick={deleteThisProject} className="m-2">
+          DELETE
+        </Button>
+        {/* <p hidden>Is Engineer: {isEngineer ? 'Yes' : 'No'}</p> */}
+      </Card.Body>
+    </Card>
   );
 }
 
@@ -58,7 +47,7 @@ ProjectCard.propTypes = {
     tempo: PropTypes.string,
     songKey: PropTypes.string,
     instruments: PropTypes.string,
-    engineer: PropTypes.bool,
+    engineer: PropTypes.bool.isRequired,
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,

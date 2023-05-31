@@ -20,8 +20,9 @@ export default function Projects() {
   }, []);
 
   return (
-    <div className="text-center my-4 text-black">
+    <div className="text-center my-4 text-white">
       <h1>PROJECTS</h1>
+      <hr />
       <Link href="/projects/new" passHref>
         <Button>Add A Project</Button>
       </Link>

@@ -1,51 +1,81 @@
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/no-this-in-sfc */
 import React, { useEffect, useState } from 'react';
+import ReactSelect from 'react-select';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+// import { Multiselect } from 'multiselect-react-dropdown';
+import {
+  Button, FloatingLabel, Form,
+} from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createProject, getProjects, updateProject } from '../../api/projectData';
+import { createProject, updateProject } from '../../api/projectData';
+import { getEngineer } from '../../api/userData';
 
 const initialState = {
   projectName: '',
   genre: '',
   tempo: '',
   songKey: '',
-  instruments: '',
-  engineer: '',
+  instruments: [],
   notes: '',
 };
 
 export default function ProjectForm({ projectObj }) {
   const [formInput, setFormInput] = useState(initialState);
-  // const [engineers, setEngineers] = useState([]);
-  // const [projects, setProjects] = useState([]);
+  const [engineers, setEngineers] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
+  const [selectedInstruments, setSelectedInstruments] = useState([]);
+
+  const sounds = [
+    { value: 'Drums', label: 'Drums' },
+    { value: 'Bass', label: 'Bass' },
+    { value: 'Electric Guitar', label: 'Electric Guitar' },
+    { value: 'Acoustic Guitar', label: 'Acoustic Guitar' },
+    { value: 'Piano', label: 'Piano' },
+    { value: 'Synth', label: 'Synth' },
+    { value: 'B3 Organ', label: 'B3 Organ' },
+    { value: 'Strings', label: 'Strings' },
+    { value: 'Horns', label: 'Horns' },
+    { value: 'Woodwinds', label: 'Woodwinds' },
+  ];
 
   useEffect(() => {
-    getProjects(user.uid).then(setFormInput);
+    getEngineer().then(setEngineers);
+    if (projectObj?.firebaseKey) {
+      setFormInput((prevState) => ({
+        ...prevState,
+        ...projectObj,
+        engineer: projectObj.engineer || '',
+      }));
 
-    if (projectObj.firebaseKey) setFormInput(projectObj);
+      // Convert instruments string to an array of objects with value and label properties
+      const instrumentsArray = projectObj.instruments?.split(',').map((instrument) => ({
+        value: instrument,
+        label: instrument,
+      }));
+      setSelectedInstruments(instrumentsArray);
+    } else {
+      setFormInput(initialState);
+    }
   }, [projectObj, user]);
-
-  // useEffect(() => {
-  //   getEngineers(user.uid).then(setEngineers);
-
-  //   if (engineerObj.firebaseKey) setFormInput(engineerObj);
-  // }, [projectObj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const updatedValue = value;
     setFormInput((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: updatedValue,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (projectObj.firebaseKey) {
-      updateProject(formInput).then(() => router.push(`/projects/${projectObj.firebaseKey}`));
+      updateProject(formInput)
+        .then(() => router.push(`/projects/${projectObj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createProject(payload).then(() => {
@@ -54,15 +84,18 @@ export default function ProjectForm({ projectObj }) {
     }
   };
 
-  // <div className="text-center d-flex flex-wrap">
-  //   {projects.map((project) => (
-  //     <ProjectCard key={project.firebaseKey} projectObj={project} onUpdate={getAllTheProjects} />
-  //   ))}
-  // </div>;
+  const handleInstrumentChange = (selectedOptions) => {
+    setSelectedInstruments(selectedOptions);
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setFormInput((prevState) => ({
+      ...prevState,
+      instruments: selectedValues.join(','),
+    }));
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-black mt-5">{projectObj.firebaseKey ? 'Update' : 'Create'} Projects</h2>
+      <h2 className="text-white mt-5">{projectObj.firebaseKey ? 'Update' : 'Create'} Projects</h2>
 
       {/* PROJECT NAME INPUT */}
       <FloatingLabel controlId="floatingInput1" label="Project Name" className="mb-3">
@@ -92,6 +125,7 @@ export default function ProjectForm({ projectObj }) {
           <option value="Rock">Rock</option>
           <option value="Indie">Indie</option>
           <option value="R&B">R&B</option>
+          <option value="R&B">Hip-Hop</option>
           <option value="Metal">Metal</option>
           <option value="Jazz">Jazz</option>
           <option value="Classical">Classical</option>
@@ -127,33 +161,20 @@ export default function ProjectForm({ projectObj }) {
       </FloatingLabel>
 
       {/* INSTRUMENT INPUT */}
-      <FloatingLabel controlId="floatingInput5" label="Instrument" className="mb-3">
-        <Form.Select
-          type="text"
-          placeholder="Instrument(s)"
-          name="instruments"
-          value={formInput.instruments}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select Instrument</option>
-          <option value="Drums">Drums</option>
-          <option value="Bass">Bass</option>
-          <option value="Electric Guitar">Electric Guitar</option>
-          <option value="Acoustic Guitar">Acoustic Guitar</option>
-          <option value="Piano">Piano</option>
-          <option value="Synth">Synth</option>
-          <option value="B3 Organ">B3 Organ</option>
-          <option value="Strings">Strings</option>
-          <option value="Horns">Horns</option>
-          <option value="Woodwinds">Woodwinds</option>
-        </Form.Select>
+      <FloatingLabel controlId="floatingInput5" label="Instrument(s)" className="mb-3">
+        <ReactSelect
+          options={sounds}
+          isMulti
+          closeMenuOnSelect={false}
+          value={selectedInstruments}
+          onChange={handleInstrumentChange}
+          onSubmit={handleSubmit}
+        />
       </FloatingLabel>
 
-      {/* ENGINEER INPUT
+      {/* ENGINEER INPUT */}
       <FloatingLabel controlId="floatingInput6" label="Engineer" className="mb-3">
         <Form.Select
-          type="text"
           placeholder="Select Engineer"
           name="engineer"
           value={formInput.engineer}
@@ -161,18 +182,13 @@ export default function ProjectForm({ projectObj }) {
           required
         >
           <option value="">Select an Engineer</option>
-          {
-            engineers.map((engineer) => (
-              <option
-                key={engineer.firebaseKey}
-                value={engineer.firebaseKey}
-              >
-                {engineer.firstName} {engineer.lastName}
-              </option>
-            ))
-          }
+          {engineers.map((engineer) => (
+            <option key={engineer.uid} value={engineer.lastName}>
+              {engineer.firstName} {engineer.lastName}
+            </option>
+          ))}
         </Form.Select>
-      </FloatingLabel> */}
+      </FloatingLabel>
 
       {/* NOTES INPUT */}
       <FloatingLabel controlId="floatingInput7" label="Notes" className="mb-3">
@@ -198,10 +214,12 @@ ProjectForm.propTypes = {
     genre: PropTypes.string,
     tempo: PropTypes.string,
     songKey: PropTypes.string,
-    instruments: PropTypes.string,
-    engineer: PropTypes.bool,
+    instruments: PropTypes.array.isRequired,
+    engineer: PropTypes.bool.isRequired,
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
+    label: PropTypes.string,
+    isSelected: PropTypes.bool,
   }),
 };
 
