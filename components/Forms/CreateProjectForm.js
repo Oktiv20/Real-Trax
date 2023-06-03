@@ -1,11 +1,9 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable react/no-this-in-sfc */
 import React, { useEffect, useState } from 'react';
 import ReactSelect from 'react-select';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-// import { Multiselect } from 'multiselect-react-dropdown';
 import {
   Button, FloatingLabel, Form,
 } from 'react-bootstrap';
@@ -19,10 +17,11 @@ const initialState = {
   tempo: '',
   songKey: '',
   instruments: [],
+  engineer_id: '',
   notes: '',
 };
 
-export default function ProjectForm({ projectObj }) {
+export default function ProjectForm({ projectObj, engineerObj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [engineers, setEngineers] = useState([]);
   const router = useRouter();
@@ -49,18 +48,19 @@ export default function ProjectForm({ projectObj }) {
         ...prevState,
         ...projectObj,
         engineer: projectObj.engineer || '',
+        engineer_id: engineerObj.firebaseKey,
       }));
 
       // Convert instruments string to an array of objects with value and label properties
-      const instrumentsArray = projectObj.instruments?.split(',').map((instrument) => ({
+      const instrumentsArray = projectObj.instruments?.split(', ').map((instrument) => ({
         value: instrument,
         label: instrument,
       }));
       setSelectedInstruments(instrumentsArray);
     } else {
-      setFormInput(initialState);
+      setFormInput((initialState));
     }
-  }, [projectObj, user]);
+  }, [projectObj, user, engineerObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -161,7 +161,7 @@ export default function ProjectForm({ projectObj }) {
       </FloatingLabel>
 
       {/* INSTRUMENT INPUT */}
-      <FloatingLabel controlId="floatingInput5" label="Instrument(s)" className="mb-3">
+      <FloatingLabel controlId="floatingInput5" className="mb-3">
         <ReactSelect
           options={sounds}
           isMulti
@@ -169,6 +169,14 @@ export default function ProjectForm({ projectObj }) {
           value={selectedInstruments}
           onChange={handleInstrumentChange}
           onSubmit={handleSubmit}
+          placeholder="Instrument(s)"
+          styles={{
+            control: (provided) => ({
+              ...provided,
+              width: '100%',
+              minHeight: '50px',
+            }),
+          }}
         />
       </FloatingLabel>
 
@@ -216,6 +224,7 @@ ProjectForm.propTypes = {
     songKey: PropTypes.string,
     instruments: PropTypes.array.isRequired,
     engineer: PropTypes.bool.isRequired,
+    engineer_id: PropTypes.string,
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
     label: PropTypes.string,
@@ -223,6 +232,16 @@ ProjectForm.propTypes = {
   }),
 };
 
+ProjectForm.propTypes = {
+  engineerObj: PropTypes.shape({
+    firebaseKey: PropTypes.string,
+  }),
+};
+
 ProjectForm.defaultProps = {
   projectObj: initialState,
+};
+
+ProjectForm.defaultProps = {
+  engineerObj: initialState,
 };

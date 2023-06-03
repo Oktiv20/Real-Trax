@@ -11,28 +11,49 @@ function ProjectCard({ projectObj, onUpdate }) {
     }
   };
 
-  // const isEngineer = projectObj.engineer === true;
-
   return (
-    <Card style={{
-      width: '18rem', height: '15rem', margin: '10px', backgroundColor: 'goldenrod', color: 'black', borderRadius: '40px', justifyContent: 'center',
-    }}
+    <Card
+      className="project-card"
+      style={{
+        width: '20rem',
+        height: '20rem',
+        margin: '10px',
+        background: 'linear-gradient(to bottom right, #FF8300, #f7b008)',
+        color: 'black',
+        borderRadius: '50%',
+        justifyContent: 'center',
+        boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
+        position: 'relative',
+      }}
     >
       <Card.Body>
         <br />
-        <Card.Title>{projectObj.projectName}</Card.Title>
         <br />
         <br />
-        <Link href={`/projects/${projectObj.firebaseKey}`} passHref>
-          <Button variant="success" className="m-2">VIEW</Button>
-        </Link>
-        <Link href={`/projects/edit/${projectObj.firebaseKey}`} passHref>
-          <Button variant="info" className="m-2">EDIT</Button>
-        </Link>
-        <Button variant="danger" onClick={deleteThisProject} className="m-2">
-          DELETE
-        </Button>
-        {/* <p hidden>Is Engineer: {isEngineer ? 'Yes' : 'No'}</p> */}
+        <Card.Title style={{ fontSize: '23px' }}>{projectObj.projectName}</Card.Title>
+        <br />
+        <br />
+        <div className="card-buttons">
+          <Link href={`/projects/${projectObj.firebaseKey}`} passHref>
+            <Button variant="dark" className="m-2 view-button" size="sm" style={{ background: 'black', color: 'white' }}>
+              VIEW
+            </Button>
+          </Link>
+          <Link href={`/projects/edit/${projectObj.firebaseKey}`} passHref>
+            <Button variant="dark" className="m-2 edit-button" size="sm" style={{ background: 'black', color: 'white' }}>
+              EDIT
+            </Button>
+          </Link>
+          <Button
+            variant="dark"
+            onClick={deleteThisProject}
+            className="m-2 delete-button"
+            size="sm"
+            style={{ background: 'black', color: 'white' }}
+          >
+            DELETE
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );

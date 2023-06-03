@@ -9,7 +9,7 @@ export default function EngineerCard({ engineerObj }) {
   return (
     <>
       <Card style={{
-        width: '25rem', height: '32rem', margin: '10px', backgroundColor: 'goldenrod', color: 'black', borderRadius: '40px',
+        width: '25rem', height: '35rem', margin: '10px', background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black', borderRadius: '40px',
       }}
       >
         <Card.Body>
@@ -39,10 +39,10 @@ export default function EngineerCard({ engineerObj }) {
           </Card.Text>
           <br />
           <Link href={`/users/edit/${engineerObj.firebaseKey}`} passHref>
-            <Button variant="info" className="m-2">EDIT</Button>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>EDIT</Button>
           </Link>
-          <Link href="/" passHref>
-            <Button variant="success" className="m-2">BOOKINGS</Button>
+          <Link href="/engineerBookings" passHref>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>BOOKINGS</Button>
           </Link>
         </Card.Body>
       </Card>

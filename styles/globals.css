@@ -20,3 +20,24 @@ a {
 body {
   background-color: black;
 }
+
+.project-card:hover .card-buttons,
+.project-card:hover .delete-button {
+  opacity: 1;
+}
+
+.card-buttons {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  position: relative;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.delete-button {
+  position: relative;
+  bottom: 1px;
+  left: 13%;
+  transform: translateX(-50%);
+}
