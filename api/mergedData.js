@@ -1,4 +1,4 @@
-import { getSingleProject } from './projectData';
+import { getEngineerBooking, getSingleProject } from './projectData';
 import { getSingleUser } from './userData';
 
 const viewUserInfo = (firebaseKey) => new Promise((resolve, reject) => {
@@ -17,4 +17,10 @@ const viewProjectDetails = (projectFirebaseKey) => new Promise((resolve, reject)
     }).catch((error) => reject(error));
 });
 
-export { viewUserInfo, viewProjectDetails };
+const viewEngineerBookings = (engineerFirebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([getSingleProject(engineerFirebaseKey), getEngineerBooking(engineerFirebaseKey)])
+    .then(([engineerObject, engineerBookingArray]) => {
+      resolve({ ...engineerObject, bookings: engineerBookingArray });
+    }).catch((error) => reject(error));
+});
+export { viewUserInfo, viewProjectDetails, viewEngineerBookings };

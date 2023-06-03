@@ -14,10 +14,10 @@ function Signin() {
         color: 'white',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
+      <h1>WELCOME TO REAL TRAX</h1>
+      <p>Click the button below to sign up or log in!</p>
       <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
+        Sign Up/Log in
       </Button>
     </div>
   );

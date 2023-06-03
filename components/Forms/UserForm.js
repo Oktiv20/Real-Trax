@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
 import ReactSelect from 'react-select';
 import { useRouter } from 'next/router';
@@ -16,6 +17,7 @@ const initialState = {
   experience: '',
   creditsLink: '',
   isEngineer: false,
+  engineer_id: '',
   uid: '',
 
 };
@@ -88,7 +90,6 @@ export default function UserForm({ obj }) {
         updateUser(patchPayload).then(() => {
           getUserLogin(uid).then((userData) => {
             setUser(userData);
-            router.push('/');
           });
         });
       });
@@ -132,7 +133,7 @@ export default function UserForm({ obj }) {
 
       {/* TITLE INPUT  */}
       <FloatingLabel controlId="floatingInput5" label="Title" className="mb-3">
-        <Form.Control type="tel" placeholder="title" name="title" value={formInfo.title || ''} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="title" name="title" value={formInfo.title || ''} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
@@ -171,6 +172,14 @@ export default function UserForm({ obj }) {
               value={category.filter((option) => formInfo.preferredGenre.includes(option.value))}
               onChange={handleGenreChange}
               onSubmit={handleSubmit}
+              placeholder=""
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  width: '100%',
+                  minHeight: '50px',
+                }),
+              }}
             />
           </FloatingLabel>
 

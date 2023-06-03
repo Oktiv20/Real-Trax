@@ -5,7 +5,7 @@ export default function ArtistEngineerCard({ engineerObj }) {
   return (
     <>
       <Card style={{
-        width: '25rem', height: '20rem', margin: '10px', backgroundColor: 'goldenrod', color: 'black', borderRadius: '40px',
+        width: '25rem', height: '25rem', margin: '10px', background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black', borderRadius: '40px',
       }}
       >
         <Card.Body>
