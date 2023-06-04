@@ -57,18 +57,22 @@ const getSingleProject = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// // GET A SINGLE TEAM'S PLAYERS
-// const getTeamsPlayers = (firebaseKey) => new Promise((resolve, reject) => {
-//   fetch(`${endpoint}/players.json?orderBy="team_id"&equalTo="${firebaseKey}"`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => resolve(Object.values(data)))
-//     .catch(reject);
-// });
+const getEngineerBooking = (engineerId) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users.json?orderBy="firebaseKey"&equalTo="${engineerId}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    }).catch(reject);
+});
 
 // UPDATE PROJECT
 const updateProject = (payload) => new Promise((resolve, reject) => {
@@ -108,5 +112,5 @@ export {
   getSingleProject,
   updateProject,
   deleteSingleProject,
-  // getTeamsPlayers,
+  getEngineerBooking,
 };

@@ -1,11 +1,9 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable react/no-this-in-sfc */
 import React, { useEffect, useState } from 'react';
 import ReactSelect from 'react-select';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-// import { Multiselect } from 'multiselect-react-dropdown';
 import {
   Button, FloatingLabel, Form,
 } from 'react-bootstrap';
@@ -19,6 +17,7 @@ const initialState = {
   tempo: '',
   songKey: '',
   instruments: [],
+  engineer_id: '',
   notes: '',
 };
 
@@ -58,7 +57,7 @@ export default function ProjectForm({ projectObj }) {
       }));
       setSelectedInstruments(instrumentsArray);
     } else {
-      setFormInput(initialState);
+      setFormInput((initialState));
     }
   }, [projectObj, user]);
 
@@ -73,7 +72,7 @@ export default function ProjectForm({ projectObj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (projectObj.firebaseKey) {
+    if (projectObj?.firebaseKey) {
       updateProject(formInput)
         .then(() => router.push(`/projects/${projectObj.firebaseKey}`));
     } else {
@@ -95,7 +94,7 @@ export default function ProjectForm({ projectObj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{projectObj.firebaseKey ? 'Update' : 'Create'} Projects</h2>
+      <h2 className="text-white mt-5">{projectObj?.firebaseKey ? 'Update' : 'Create'} Projects</h2>
 
       {/* PROJECT NAME INPUT */}
       <FloatingLabel controlId="floatingInput1" label="Project Name" className="mb-3">
@@ -161,7 +160,7 @@ export default function ProjectForm({ projectObj }) {
       </FloatingLabel>
 
       {/* INSTRUMENT INPUT */}
-      <FloatingLabel controlId="floatingInput5" label="Instrument(s)" className="mb-3">
+      <FloatingLabel controlId="floatingInput5" className="mb-3">
         <ReactSelect
           options={sounds}
           isMulti
@@ -169,6 +168,14 @@ export default function ProjectForm({ projectObj }) {
           value={selectedInstruments}
           onChange={handleInstrumentChange}
           onSubmit={handleSubmit}
+          placeholder="Instrument(s)"
+          styles={{
+            control: (provided) => ({
+              ...provided,
+              width: '100%',
+              minHeight: '50px',
+            }),
+          }}
         />
       </FloatingLabel>
 
@@ -203,7 +210,7 @@ export default function ProjectForm({ projectObj }) {
       </FloatingLabel>
 
       {/* SUBMIT BUTTON */}
-      <Button type="submit">{projectObj.firebaseKey ? 'Update' : 'Create'} Project</Button>
+      <Button type="submit">{projectObj?.firebaseKey ? 'Update' : 'Create'} Project</Button>
     </Form>
   );
 }
@@ -215,7 +222,8 @@ ProjectForm.propTypes = {
     tempo: PropTypes.string,
     songKey: PropTypes.string,
     instruments: PropTypes.array.isRequired,
-    engineer: PropTypes.bool.isRequired,
+    engineer: PropTypes.string.isRequired,
+    engineer_id: PropTypes.string,
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
     label: PropTypes.string,
