@@ -17,7 +17,6 @@ const initialState = {
   experience: '',
   creditsLink: '',
   isEngineer: false,
-  engineer_id: '',
   uid: '',
 
 };
@@ -165,7 +164,7 @@ export default function UserForm({ obj }) {
           </FloatingLabel>
 
           {/* PREFERRED GENRE */}
-          <FloatingLabel controlId="floatingInput6" label="Preferred Genre(s)" className="mb-3">
+          <FloatingLabel controlId="floatingInput6" className="mb-3">
             <ReactSelect
               options={category}
               isMulti
@@ -173,7 +172,7 @@ export default function UserForm({ obj }) {
               value={category.filter((option) => formInfo.preferredGenre.includes(option.value))}
               onChange={handleGenreChange}
               onSubmit={handleSubmit}
-              placeholder=""
+              placeholder="Preferred Genre(s)"
               styles={{
                 control: (provided) => ({
                   ...provided,
