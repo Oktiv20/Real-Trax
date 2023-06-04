@@ -26,7 +26,6 @@ export default function ArtistEngineerCard({ engineerObj }) {
             <br />
             Experience: {engineerObj.experience}
             <br />
-            <br />
             Link to Credits: {engineerObj.creditsLink}
           </Card.Text>
         </Card.Body>

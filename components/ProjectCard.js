@@ -6,8 +6,8 @@ import { deleteSingleProject } from '../api/projectData';
 
 function ProjectCard({ projectObj, onUpdate }) {
   const deleteThisProject = () => {
-    if (window.confirm(`Delete ${projectObj.projectName}?`)) {
-      deleteSingleProject(projectObj.firebaseKey).then(() => onUpdate());
+    if (window.confirm(`Delete ${projectObj?.projectName}?`)) {
+      deleteSingleProject(projectObj?.firebaseKey).then(() => onUpdate());
     }
   };
 
@@ -30,16 +30,16 @@ function ProjectCard({ projectObj, onUpdate }) {
         <br />
         <br />
         <br />
-        <Card.Title style={{ fontSize: '23px' }}>{projectObj.projectName}</Card.Title>
+        <Card.Title style={{ fontSize: '23px' }}>{projectObj?.projectName}</Card.Title>
         <br />
         <br />
         <div className="card-buttons">
-          <Link href={`/projects/${projectObj.firebaseKey}`} passHref>
+          <Link href={`/projects/${projectObj?.firebaseKey}`} passHref>
             <Button variant="dark" className="m-2 view-button" size="sm" style={{ background: 'black', color: 'white' }}>
               VIEW
             </Button>
           </Link>
-          <Link href={`/projects/edit/${projectObj.firebaseKey}`} passHref>
+          <Link href={`/projects/edit/${projectObj?.firebaseKey}`} passHref>
             <Button variant="dark" className="m-2 edit-button" size="sm" style={{ background: 'black', color: 'white' }}>
               EDIT
             </Button>
@@ -68,7 +68,7 @@ ProjectCard.propTypes = {
     tempo: PropTypes.string,
     songKey: PropTypes.string,
     instruments: PropTypes.string,
-    engineer: PropTypes.bool.isRequired,
+    engineer: PropTypes.bool,
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,

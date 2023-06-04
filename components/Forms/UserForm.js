@@ -44,7 +44,7 @@ export default function UserForm({ obj }) {
   ];
 
   useEffect(() => {
-    if (obj.firebaseKey) setFormInfo(obj);
+    if (obj?.firebaseKey) setFormInfo(obj);
   }, [obj]);
 
   //   const genresArray = userObj.genre?.split(',').map((genre) => ({
@@ -81,7 +81,7 @@ export default function UserForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
+    if (obj?.firebaseKey) {
       updateUser(formInfo).then(() => router.push('/'));
     } else {
       const payload = { ...formInfo, uid };
@@ -95,6 +95,7 @@ export default function UserForm({ obj }) {
       });
     }
   };
+
   return (
     <Form
       onSubmit={handleSubmit}
@@ -108,7 +109,7 @@ export default function UserForm({ obj }) {
       }}
     >
       <h2 className="mt-5" style={{ paddingBottom: '50px', color: 'white' }}>
-        {obj.firebaseKey ? 'Update' : 'Create'} User
+        {obj?.firebaseKey ? 'Update' : 'Create'} User
       </h2>
 
       {/* FIRST NAME INPUT  */}
@@ -195,7 +196,7 @@ export default function UserForm({ obj }) {
 
       {/* SUBMIT BUTTON  */}
       <Button variant="outline-light" type="submit">
-        {obj.firebaseKey ? 'Update' : 'Create'} User
+        {obj?.firebaseKey ? 'Update' : 'Create'} User
       </Button>
     </Form>
   );
