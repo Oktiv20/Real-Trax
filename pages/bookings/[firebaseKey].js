@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
-import { viewProjectDetails } from '../../api/mergedData';
+import { viewEngineerBookings } from '../../api/mergedData';
 
-export default function ViewProject() {
+export default function ViewBooking() {
   const [projectDetails, setProjectDetails] = useState({});
   const router = useRouter();
 
   const { firebaseKey } = router.query;
 
   useEffect(() => {
-    viewProjectDetails(firebaseKey).then(setProjectDetails);
+    viewEngineerBookings(firebaseKey).then(setProjectDetails);
   }, [firebaseKey]);
 
   const instruments = Array.isArray(projectDetails.instruments)
@@ -19,7 +19,7 @@ export default function ViewProject() {
 
   return (
     <div className="text-center my-4 text-white">
-      <h1>PROJECT DETAILS</h1>
+      <h1>BOOKING DETAILS</h1>
       <hr />
       <div
         style={{
@@ -31,27 +31,21 @@ export default function ViewProject() {
       >
         <Card
           style={{
-            width: '30rem',
-            height: '43rem',
+            width: '25rem',
+            height: '30rem',
             margin: '10px',
             background: 'linear-gradient(to bottom right, #FF8300, #f7b008)',
             color: 'black',
             borderRadius: '40px',
             alignItems: 'center',
-            paddingTop: '30px',
           }}
         >
-          <Card.Title style={{
-            fontSize: '26px',
-          }}
-          >{projectDetails?.projectName}
-          </Card.Title>
           <Card.Body>
+            <br />
+            <Card.Title>{projectDetails?.projectName}</Card.Title>
             <hr />
-            <Card.Text style={{
-              fontSize: '20px',
-            }}
-            >
+            <br />
+            <Card.Text>
               Genre: {projectDetails?.genre}
               <br />
               <br />
