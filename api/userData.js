@@ -42,8 +42,8 @@ const getUserLogin = (uid) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
+      if (Object.values(data).length) {
+        resolve(Object.values(data)[0]);
       } else {
         resolve([]);
       }
@@ -88,20 +88,23 @@ const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// const getUserByFBKey = (firebaseKey) => new Promise((resolve, reject) => {
-//   // Make a GET request to the Firebase Realtime Database to retrieve user data that matches the `firebaseKey` value
-//   fetch(`${endpoint}/users/${firebaseKey}.json`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     // Parse the response body as JSON
-//     .then((response) => response.json())
-//     // Resolve the Promise with the user object found in the data
-//     .then((data) => resolve(data))
-//     .catch(reject);
-// });
+const getUsersBookings = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users.json?orderBy="firebaseKey"&equalTo="${firebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
 
 const getArtist = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json?orderBy="isEngineer"&equalTo=false`, {
@@ -145,5 +148,5 @@ export {
   getSingleUser,
   getArtist,
   getEngineer,
-  // getUserByFBKey,
+  getUsersBookings,
 };

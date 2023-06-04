@@ -8,27 +8,34 @@ export default function ArtistCard({ artistObj }) {
   return (
     <>
       <Card style={{
-        width: '25rem', height: '20rem', margin: '10px', backgroundColor: 'goldenrod', color: 'black', borderRadius: '40px',
+        width: '25rem', height: '25rem', margin: '10px', background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
       }}
       >
         <Card.Body>
           <br />
-          <Card.Title>{artistObj.firstName} {artistObj.lastName}</Card.Title>
+          <Card.Title style={{
+            fontSize: '35px',
+          }}
+          >{artistObj.firstName} {artistObj.lastName}
+          </Card.Title>
           <br />
-          Phone Number: {artistObj.phoneNumber}
-          <br />
-          <br />
-          Email: {artistObj.email}
-          <br />
-          <br />
-          Title: {artistObj.title}
-          <br />
-          <br />
+          <Card.Text style={{
+            fontSize: '25px',
+          }}
+          >
+            Phone Number: {artistObj.phoneNumber}
+            <br />
+            <br />
+            Email: {artistObj.email}
+            <br />
+            <br />
+            Title: {artistObj.title}
+          </Card.Text>
           <Link href={`/users/edit/${artistObj.firebaseKey}`} passHref>
-            <Button variant="info" className="m-2">EDIT</Button>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>UPDATE INFORMATION</Button>
           </Link>
           <Link href="/projects" passHref>
-            <Button variant="success" className="m-2">PROJECTS</Button>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>PROJECTS</Button>
           </Link>
         </Card.Body>
       </Card>
@@ -38,16 +45,11 @@ export default function ArtistCard({ artistObj }) {
 
 ArtistCard.propTypes = {
   artistObj: PropTypes.shape({
-    photoURL: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     email: PropTypes.string,
     phoneNumber: PropTypes.string,
     title: PropTypes.string,
-    dailyRate: PropTypes.string,
-    preferredGenre: PropTypes.string,
-    experience: PropTypes.string,
-    creditsLink: PropTypes.string,
     isEngineer: PropTypes.bool,
     firebaseKey: PropTypes.string,
     uid: PropTypes.string,

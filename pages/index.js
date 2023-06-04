@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
-import { getUser } from '../api/userData';
+import { useState, useEffect } from 'react';
 import EngineerCard from '../components/EngineerCard';
 import { useAuth } from '../utils/context/authContext';
 import ArtistCard from '../components/ArtistCard';
+import { getUser } from '../api/userData';
 
 function Home() {
   const { user } = useAuth();
@@ -22,10 +22,10 @@ function Home() {
       <div className="text-center my-4 text-white">
         <h1>PROFILE PAGE</h1>
         <hr />
-        {profileView && profileView.isEngineer ? (
-          <EngineerCard key={profileView.firebaseKey} engineerObj={profileView} />
+        {profileView.isEngineer ? (
+          <EngineerCard key={profileView?.firebaseKey} engineerObj={profileView} />
         ) : (
-          <ArtistCard key={profileView.firebaseKey} artistObj={profileView} />
+          <ArtistCard key={profileView?.firebaseKey} artistObj={profileView} />
         )}
       </div>
     </>

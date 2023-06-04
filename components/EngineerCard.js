@@ -5,44 +5,44 @@ import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
 export default function EngineerCard({ engineerObj }) {
-  // console.log(engineerObj);
+  // console.log('THIS SHOULD SHOW THE ENGINEER', engineerObj);
   return (
     <>
       <Card style={{
-        width: '25rem', height: '32rem', margin: '10px', backgroundColor: 'goldenrod', color: 'black', borderRadius: '40px',
+        width: '25rem', height: '35rem', margin: '10px', background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black', borderRadius: '40px',
       }}
       >
         <Card.Body>
           <Card.Title style={{
             fontSize: '35px',
           }}
-          >{engineerObj.firstName} {engineerObj.lastName}
+          >{engineerObj?.firstName} {engineerObj?.lastName}
           </Card.Title>
           <br />
           <Card.Text>
-            Phone Number: {engineerObj.phoneNumber}
+            Phone Number: {engineerObj?.phoneNumber}
             <br />
             <br />
-            Email: {engineerObj.email}
+            Email: {engineerObj?.email}
             <br />
             <br />
-            Daily Rate: {engineerObj.dailyRate}
+            Daily Rate: {engineerObj?.dailyRate}
             <br />
             <br />
-            Preferred Genre: {engineerObj.preferredGenre}
+            Preferred Genre: {engineerObj?.preferredGenre}
             <br />
             <br />
-            Experience: {engineerObj.experience}
+            Experience: {engineerObj?.experience}
             <br />
             <br />
-            Link to Credits: {engineerObj.creditsLink}
+            Link to Credits: {engineerObj?.creditsLink}
           </Card.Text>
           <br />
-          <Link href={`/users/edit/${engineerObj.firebaseKey}`} passHref>
-            <Button variant="info" className="m-2">EDIT</Button>
+          <Link href={`/users/edit/${engineerObj?.firebaseKey}`} passHref>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>EDIT</Button>
           </Link>
-          <Link href="/" passHref>
-            <Button variant="success" className="m-2">BOOKINGS</Button>
+          <Link href="/engineerBookings" passHref>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>BOOKINGS</Button>
           </Link>
         </Card.Body>
       </Card>

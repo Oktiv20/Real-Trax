@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
 import ReactSelect from 'react-select';
 import { useRouter } from 'next/router';
@@ -16,6 +17,7 @@ const initialState = {
   experience: '',
   creditsLink: '',
   isEngineer: false,
+  engineer_id: '',
   uid: '',
 
 };
@@ -42,7 +44,7 @@ export default function UserForm({ obj }) {
   ];
 
   useEffect(() => {
-    if (obj.firebaseKey) setFormInfo(obj);
+    if (obj?.firebaseKey) setFormInfo(obj);
   }, [obj]);
 
   //   const genresArray = userObj.genre?.split(',').map((genre) => ({
@@ -79,7 +81,7 @@ export default function UserForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
+    if (obj?.firebaseKey) {
       updateUser(formInfo).then(() => router.push('/'));
     } else {
       const payload = { ...formInfo, uid };
@@ -88,12 +90,12 @@ export default function UserForm({ obj }) {
         updateUser(patchPayload).then(() => {
           getUserLogin(uid).then((userData) => {
             setUser(userData);
-            router.push('/');
           });
         });
       });
     }
   };
+
   return (
     <Form
       onSubmit={handleSubmit}
@@ -107,7 +109,7 @@ export default function UserForm({ obj }) {
       }}
     >
       <h2 className="mt-5" style={{ paddingBottom: '50px', color: 'white' }}>
-        {obj.firebaseKey ? 'Update' : 'Create'} User
+        {obj?.firebaseKey ? 'Update' : 'Create'} User
       </h2>
 
       {/* FIRST NAME INPUT  */}
@@ -132,7 +134,7 @@ export default function UserForm({ obj }) {
 
       {/* TITLE INPUT  */}
       <FloatingLabel controlId="floatingInput5" label="Title" className="mb-3">
-        <Form.Control type="tel" placeholder="title" name="title" value={formInfo.title || ''} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="title" name="title" value={formInfo.title || ''} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
@@ -171,6 +173,14 @@ export default function UserForm({ obj }) {
               value={category.filter((option) => formInfo.preferredGenre.includes(option.value))}
               onChange={handleGenreChange}
               onSubmit={handleSubmit}
+              placeholder=""
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  width: '100%',
+                  minHeight: '50px',
+                }),
+              }}
             />
           </FloatingLabel>
 
@@ -186,7 +196,7 @@ export default function UserForm({ obj }) {
 
       {/* SUBMIT BUTTON  */}
       <Button variant="outline-light" type="submit">
-        {obj.firebaseKey ? 'Update' : 'Create'} User
+        {obj?.firebaseKey ? 'Update' : 'Create'} User
       </Button>
     </Form>
   );

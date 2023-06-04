@@ -24,9 +24,9 @@ export default function Projects() {
       <h1>PROJECTS</h1>
       <hr />
       <Link href="/projects/new" passHref>
-        <Button>Add A Project</Button>
+        <Button variant="dark" style={{ background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black' }}>Add A Project</Button>
       </Link>
-      <div className="text-center my-4 d-flex flex-wrap">
+      <div className="text-center my-4 d-flex justify-content-center flex-wrap">
         {projects.map((project) => (
           <ProjectCard key={project.firebaseKey} projectObj={project} onUpdate={getAllProjects} />
         ))}
