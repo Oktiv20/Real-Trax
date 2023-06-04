@@ -88,42 +88,6 @@ const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getUsersBookings = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/users.json?orderBy="firebaseKey"&equalTo="${firebaseKey}"`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch(reject);
-});
-
-const getArtist = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/users.json?orderBy="isEngineer"&equalTo=false`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch(reject);
-});
-
 const getEngineer = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json?orderBy="isEngineer"&equalTo=true`, {
     method: 'GET',
@@ -146,7 +110,5 @@ export {
   updateUser,
   deleteUser,
   getSingleUser,
-  getArtist,
   getEngineer,
-  getUsersBookings,
 };

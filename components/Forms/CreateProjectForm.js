@@ -27,6 +27,7 @@ export default function ProjectForm({ projectObj }) {
   const router = useRouter();
   const { user } = useAuth();
   const [selectedInstruments, setSelectedInstruments] = useState([]);
+  // const [selectedFile, setSelectedFile] = useState(null);
 
   const sounds = [
     { value: 'Drums', label: 'Drums' },
@@ -48,6 +49,7 @@ export default function ProjectForm({ projectObj }) {
         ...prevState,
         ...projectObj,
         engineer: projectObj.engineer || '',
+        engineer_id: projectObj.engineer_id || '',
       }));
 
       // Convert instruments string to an array of objects with value and label properties
@@ -76,7 +78,9 @@ export default function ProjectForm({ projectObj }) {
       updateProject(formInput)
         .then(() => router.push(`/projects/${projectObj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const selectedEngineer = engineers.find((engineer) => engineer.lastName === formInput.engineer);
+      const engineerId = selectedEngineer ? selectedEngineer.firebaseKey : '';
+      const payload = { ...formInput, uid: user.uid, engineer_id: engineerId };
       createProject(payload).then(() => {
         router.push('/projects');
       });
@@ -164,7 +168,7 @@ export default function ProjectForm({ projectObj }) {
         <ReactSelect
           options={sounds}
           isMulti
-          closeMenuOnSelect={false}
+          closeMenuOnSelect
           value={selectedInstruments}
           onChange={handleInstrumentChange}
           onSubmit={handleSubmit}
@@ -209,6 +213,15 @@ export default function ProjectForm({ projectObj }) {
         />
       </FloatingLabel>
 
+      {/* <FloatingLabel controlId="floatingInput8" className="mb-3">
+        <input
+          type="file"
+          name="file"
+          value={selectedFile}
+          onChange={(e) => setSelectedFile(e.target.files[0])}
+        />
+      </FloatingLabel> */}
+
       {/* SUBMIT BUTTON */}
       <Button type="submit">{projectObj?.firebaseKey ? 'Update' : 'Create'} Project</Button>
     </Form>
@@ -226,8 +239,6 @@ ProjectForm.propTypes = {
     engineer_id: PropTypes.string,
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
-    label: PropTypes.string,
-    isSelected: PropTypes.bool,
   }),
 };
 

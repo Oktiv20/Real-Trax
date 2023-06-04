@@ -7,9 +7,11 @@ import Card from 'react-bootstrap/Card';
 export default function ArtistCard({ artistObj }) {
   return (
     <>
-      <Card style={{
-        width: '25rem', height: '25rem', margin: '10px', background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
-      }}
+      <Card
+        className="artist-card"
+        style={{
+          width: '25rem', height: '25rem', margin: '10px', background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)', justifyContent: 'center', position: 'relative',
+        }}
       >
         <Card.Body>
           <br />
