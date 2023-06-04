@@ -16,22 +16,22 @@ export default function ArtistCard({ artistObj }) {
           <Card.Title style={{
             fontSize: '35px',
           }}
-          >{artistObj?.firstName} {artistObj?.lastName}
+          >{artistObj.firstName} {artistObj.lastName}
           </Card.Title>
           <br />
           <Card.Text style={{
             fontSize: '25px',
           }}
           >
-            Phone Number: {artistObj?.phoneNumber}
+            Phone Number: {artistObj.phoneNumber}
             <br />
             <br />
-            Email: {artistObj?.email}
+            Email: {artistObj.email}
             <br />
             <br />
-            Title: {artistObj?.title}
+            Title: {artistObj.title}
           </Card.Text>
-          <Link href={`/users/edit/${artistObj?.firebaseKey}`} passHref>
+          <Link href={`/users/edit/${artistObj.firebaseKey}`} passHref>
             <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>UPDATE INFORMATION</Button>
           </Link>
           <Link href="/projects" passHref>
@@ -45,16 +45,11 @@ export default function ArtistCard({ artistObj }) {
 
 ArtistCard.propTypes = {
   artistObj: PropTypes.shape({
-    photoURL: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     email: PropTypes.string,
     phoneNumber: PropTypes.string,
     title: PropTypes.string,
-    dailyRate: PropTypes.string,
-    preferredGenre: PropTypes.string,
-    experience: PropTypes.string,
-    creditsLink: PropTypes.string,
     isEngineer: PropTypes.bool,
     firebaseKey: PropTypes.string,
     uid: PropTypes.string,

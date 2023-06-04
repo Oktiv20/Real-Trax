@@ -25,7 +25,8 @@ const AuthProvider = (props) => {
   // an object/value = user is logged in
 
   useEffect(() => { // This is a React hook that is used to run side effects in functional components. It is invoked after the component has mounted.
-    firebase.auth().onAuthStateChanged(async (fbUser) => { // This method is provided by the Firebase Auth API and is used to create a listener for changes to the authentication state of the user. It takes a callback function as an argument that is invoked whenever the authentication state changes. The async keyword is used to indicate that the function contains asynchronous code.
+    firebase.auth().onAuthStateChanged(async (fbUser) => {
+      // console.log(fbUser);// This method is provided by the Firebase Auth API and is used to create a listener for changes to the authentication state of the user. It takes a callback function as an argument that is invoked whenever the authentication state changes. The async keyword is used to indicate that the function contains asynchronous code.
       if (fbUser) { // Checks if a Firebase user object exists.
         setUid(fbUser.uid); // Sets the UID of the Firebase user object as the component's state.
         await getUserLogin(fbUser.uid).then(async (response) => { // Invokes the getUserLogin function, which returns information about the user's login. The async keyword is used to indicate that the function contains asynchronous code. The then() method is used to handle the response returned by the getUserLogin function.

@@ -21,7 +21,7 @@ const initialState = {
   notes: '',
 };
 
-export default function ProjectForm({ projectObj, engineerObj }) {
+export default function ProjectForm({ projectObj }) {
   const [formInput, setFormInput] = useState(initialState);
   const [engineers, setEngineers] = useState([]);
   const router = useRouter();
@@ -48,11 +48,10 @@ export default function ProjectForm({ projectObj, engineerObj }) {
         ...prevState,
         ...projectObj,
         engineer: projectObj.engineer || '',
-        engineer_id: engineerObj.firebaseKey,
       }));
 
       // Convert instruments string to an array of objects with value and label properties
-      const instrumentsArray = projectObj.instruments?.split(', ').map((instrument) => ({
+      const instrumentsArray = projectObj.instruments?.split(',').map((instrument) => ({
         value: instrument,
         label: instrument,
       }));
@@ -60,7 +59,7 @@ export default function ProjectForm({ projectObj, engineerObj }) {
     } else {
       setFormInput((initialState));
     }
-  }, [projectObj, user, engineerObj]);
+  }, [projectObj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,7 +72,7 @@ export default function ProjectForm({ projectObj, engineerObj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (projectObj.firebaseKey) {
+    if (projectObj?.firebaseKey) {
       updateProject(formInput)
         .then(() => router.push(`/projects/${projectObj.firebaseKey}`));
     } else {
@@ -95,7 +94,7 @@ export default function ProjectForm({ projectObj, engineerObj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{projectObj.firebaseKey ? 'Update' : 'Create'} Projects</h2>
+      <h2 className="text-white mt-5">{projectObj?.firebaseKey ? 'Update' : 'Create'} Projects</h2>
 
       {/* PROJECT NAME INPUT */}
       <FloatingLabel controlId="floatingInput1" label="Project Name" className="mb-3">
@@ -211,7 +210,7 @@ export default function ProjectForm({ projectObj, engineerObj }) {
       </FloatingLabel>
 
       {/* SUBMIT BUTTON */}
-      <Button type="submit">{projectObj.firebaseKey ? 'Update' : 'Create'} Project</Button>
+      <Button type="submit">{projectObj?.firebaseKey ? 'Update' : 'Create'} Project</Button>
     </Form>
   );
 }
@@ -223,7 +222,7 @@ ProjectForm.propTypes = {
     tempo: PropTypes.string,
     songKey: PropTypes.string,
     instruments: PropTypes.array.isRequired,
-    engineer: PropTypes.bool.isRequired,
+    engineer: PropTypes.string.isRequired,
     engineer_id: PropTypes.string,
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
@@ -232,16 +231,6 @@ ProjectForm.propTypes = {
   }),
 };
 
-ProjectForm.propTypes = {
-  engineerObj: PropTypes.shape({
-    firebaseKey: PropTypes.string,
-  }),
-};
-
 ProjectForm.defaultProps = {
   projectObj: initialState,
-};
-
-ProjectForm.defaultProps = {
-  engineerObj: initialState,
 };
