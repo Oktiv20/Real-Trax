@@ -57,21 +57,17 @@ const getSingleProject = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET ENGINEER'S ASSIGNED PROJECTS
 const getEngineerBooking = (engineerId) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/users.json?orderBy="firebaseKey"&equalTo="${engineerId}"`, {
+  fetch(`${endpoint}/projects.json?orderBy="engineer_id"&equalTo="${engineerId}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    }).catch(reject);
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
 });
 
 // UPDATE PROJECT

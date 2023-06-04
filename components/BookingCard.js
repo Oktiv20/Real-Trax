@@ -1,55 +1,40 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useAuth } from '../utils/context/authContext';
-import { getUser } from '../api/userData';
 
 function BookingCard({ projectObj }) {
-  const { user } = useAuth();
-  const [cardView, setCardView] = useState({});
-
-  const getCardView = () => {
-    getUser(user.uid).then(setCardView);
-  };
-
-  useEffect(() => {
-    getCardView();
-  }, [user]);
-
   return (
-    <>
-      <Card style={{
-        width: '18rem', height: '15rem', margin: '10px', backgroundColor: 'goldenrod', color: 'black', borderRadius: '40px', justifyContent: 'center',
+    <Card
+      className="project-card"
+      style={{
+        width: '20rem',
+        height: '20rem',
+        margin: '10px',
+        background: 'linear-gradient(to bottom right, #FF8300, #f7b008)',
+        color: 'black',
+        borderRadius: '50%',
+        justifyContent: 'center',
+        boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
+        position: 'relative',
       }}
-      >
-        <Card.Body>
-          <Card.Title>{projectObj.projectName}</Card.Title>
-          {cardView.isEngineer ? (
-            <><br />
-              <Link href={`/projects/${projectObj.firebaseKey}`} passHref>
-                <Button variant="success" className="m-2">VIEW</Button>
-              </Link>
-            </>
-          ) : (
-            <div>
-              {/* <Link href={`/projects/${projectObj.firebaseKey}`} passHref>
-                <Button variant="outline-primary" className="m-2">
-                  VIEW
-                </Button>
-              </Link> */}
-              {/* <Link href="/updateBooking" passHref>
-                <Button variant="outline-primary" className="m-2">
-                  Accept Booking
-                </Button>
-              </Link> */}
-            </div>
-          )}
-        </Card.Body>
-      </Card>
-    </>
+    >
+      <Card.Body>
+        <br />
+        <br />
+        <br />
+        <Card.Title style={{ fontSize: '23px' }}>{projectObj?.projectName}</Card.Title>
+        <br />
+        <br />
+        <div className="card-buttons">
+          <Link href={`/bookings/${projectObj?.firebaseKey}`} passHref>
+            <Button variant="dark" className="m-2 view-button" size="sm" style={{ background: 'black', color: 'white' }}>
+              VIEW
+            </Button>
+          </Link>
+        </div>
+      </Card.Body>
+    </Card>
   );
 }
 
@@ -62,7 +47,7 @@ BookingCard.propTypes = {
     tempo: PropTypes.string,
     songKey: PropTypes.string,
     instruments: PropTypes.string,
-    engineer: PropTypes.bool.isRequired,
+    engineer: PropTypes.bool,
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,

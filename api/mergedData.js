@@ -17,10 +17,21 @@ const viewProjectDetails = (projectFirebaseKey) => new Promise((resolve, reject)
     }).catch((error) => reject(error));
 });
 
-const viewEngineerBookings = (engineerFirebaseKey) => new Promise((resolve, reject) => {
-  Promise.all([getSingleProject(engineerFirebaseKey), getEngineerBooking(engineerFirebaseKey)])
-    .then(([engineerObject, engineerBookingArray]) => {
-      resolve({ ...engineerObject, bookings: engineerBookingArray });
+const viewEngineerBookings = (projectFirebaseKey) => new Promise((resolve, reject) => {
+  getSingleProject(projectFirebaseKey)
+    .then((projectObject) => {
+      getEngineerBooking(projectObject?.engineer_id)
+        .then((artistObject) => {
+          resolve({ artistObject, ...projectObject });
+        });
     }).catch((error) => reject(error));
 });
+
+// const viewEngineerBookings = (projectFirebaseKey) => new Promise((resolve, reject) => {
+//   Promise.all([getSingleProject(projectFirebaseKey), getEngineerBooking(projectFirebaseKey)])
+//     .then(([projectObject, engineerBookingArray]) => {
+//       console.log(projectObject);
+//       resolve({ ...projectObject, bookings: engineerBookingArray });
+//     }).catch((error) => reject(error));
+// });
 export { viewUserInfo, viewProjectDetails, viewEngineerBookings };

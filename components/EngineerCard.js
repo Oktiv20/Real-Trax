@@ -29,7 +29,7 @@ export default function EngineerCard({ engineerObj }) {
             Daily Rate: {engineerObj?.dailyRate}
             <br />
             <br />
-            Preferred Genre: {engineerObj?.preferredGenre}
+            Preferred Genre(s): {engineerObj?.preferredGenre}
             <br />
             <br />
             Experience: {engineerObj?.experience}
