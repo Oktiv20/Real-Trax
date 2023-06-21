@@ -18,14 +18,12 @@ const initialState = {
   creditsLink: '',
   isEngineer: false,
   uid: '',
-
 };
 export default function UserForm({ obj }) {
   const [formInfo, setFormInfo] = useState({ ...initialState });
-  const [showEngineer, setShowEngineer] = useState(false);
+  const [showEngineer, setShowEngineer] = useState(obj?.isEngineer || false);
   const router = useRouter();
   const { setUser, uid } = useAuth();
-  // const [selectedGenres, setSelectedGenres] = useState([]);
 
   const category = [
     { value: 'Blues', label: 'Blues' },
@@ -46,14 +44,9 @@ export default function UserForm({ obj }) {
     if (obj?.firebaseKey) setFormInfo(obj);
   }, [obj]);
 
-  //   const genresArray = userObj.genre?.split(',').map((genre) => ({
-  //     value: genre,
-  //     label: genre,
-  //   }));
-  //   setSelectedGenres(genresArray);
-  //   } else {
-  //   setFormInput(initialState);
-  // }, [userObj, user];
+  useEffect(() => {
+    setShowEngineer(formInfo.isEngineer);
+  }, [formInfo.isEngineer]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -99,8 +92,8 @@ export default function UserForm({ obj }) {
     <Form
       onSubmit={handleSubmit}
       style={{
-        marginTop: '50px',
-        padding: '60px',
+        marginTop: '10px',
+        padding: '30px',
         width: '450px',
         justifyContent: 'center',
         alignItems: 'center',
@@ -168,7 +161,7 @@ export default function UserForm({ obj }) {
             <ReactSelect
               options={category}
               isMulti
-              closeMenuOnSelect={false}
+              closeMenuOnSelect
               value={category.filter((option) => formInfo.preferredGenre.includes(option.value))}
               onChange={handleGenreChange}
               onSubmit={handleSubmit}

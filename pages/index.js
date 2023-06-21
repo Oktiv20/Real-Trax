@@ -18,19 +18,17 @@ function Home() {
   }, []);
 
   return (
-    <>
-      <div className="text-center my-4 text-white">
-        <h1>PROFILE PAGE</h1>
-        <hr />
-        <div className="text-center my-4 d-flex justify-content-center flex-wrap">
-          {profileView.isEngineer ? (
-            <EngineerCard key={profileView?.firebaseKey} engineerObj={profileView} />
-          ) : (
-            <ArtistCard key={profileView?.firebaseKey} artistObj={profileView} />
-          )}
-        </div>
+    <div className="text-center my-4 text-white">
+      <h1>PROFILE PAGE</h1>
+      <hr />
+      <div className="text-center my-4 d-flex justify-content-center flex-wrap">
+        {profileView.isEngineer ? (
+          <EngineerCard key={profileView?.firebaseKey} engineerObj={profileView} />
+        ) : (
+          <ArtistCard key={profileView?.firebaseKey} artistObj={profileView} />
+        )}
       </div>
-    </>
+    </div>
   );
 }
 
