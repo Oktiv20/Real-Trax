@@ -2,10 +2,13 @@ import { PropTypes } from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
 export default function ArtistEngineerCard({ engineerObj }) {
+  const preferredGenre = Array.isArray(engineerObj.preferredGenre)
+    ? engineerObj.preferredGenre.join(', ')
+    : engineerObj.preferredGenre;
   return (
     <>
       <Card style={{
-        width: '25rem', height: '25rem', margin: '10px', background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black', borderRadius: '40px',
+        width: '25rem', height: 'auto', margin: '10px', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
       }}
       >
         <Card.Body>
@@ -14,17 +17,21 @@ export default function ArtistEngineerCard({ engineerObj }) {
           }}
           >{engineerObj.firstName} {engineerObj.lastName}
           </Card.Title>
-          <br />
           <Card.Text>
             Phone Number: {engineerObj.phoneNumber}
             <br />
+            <br />
             Email: {engineerObj.email}
+            <br />
             <br />
             Daily Rate: {engineerObj.dailyRate}
             <br />
-            Preferred Genre: {engineerObj.preferredGenre}
+            <br />
+            Preferred Genre: {preferredGenre}
+            <br />
             <br />
             Experience: {engineerObj.experience}
+            <br />
             <br />
             Link to Credits: {engineerObj.creditsLink}
           </Card.Text>
@@ -42,7 +49,7 @@ ArtistEngineerCard.propTypes = {
     email: PropTypes.string,
     phoneNumber: PropTypes.string,
     dailyRate: PropTypes.string,
-    preferredGenre: PropTypes.string,
+    preferredGenre: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     experience: PropTypes.string,
     creditsLink: PropTypes.string,
     isEngineer: PropTypes.bool.isRequired,

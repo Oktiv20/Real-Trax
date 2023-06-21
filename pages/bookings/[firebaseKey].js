@@ -32,7 +32,7 @@ export default function ViewBooking() {
         <Card
           style={{
             width: '25rem',
-            height: '30rem',
+            height: 'auto',
             margin: '10px',
             background: 'linear-gradient(to bottom right, #FF8300, #f7b008)',
             color: 'black',
@@ -56,9 +56,6 @@ export default function ViewBooking() {
               <br />
               <br />
               Instrument(s): {instruments}
-              <br />
-              <br />
-              Engineer: {projectDetails?.engineer}
               <br />
               <br />
               Notes: {projectDetails?.notes}

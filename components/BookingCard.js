@@ -11,7 +11,7 @@ function BookingCard({ projectObj }) {
         width: '20rem',
         height: '20rem',
         margin: '10px',
-        background: 'linear-gradient(to bottom right, #FF8300, #f7b008)',
+        background: 'linear-gradient(to bottom right, #e6c200, #ffb700)',
         color: 'black',
         borderRadius: '50%',
         justifyContent: 'center',

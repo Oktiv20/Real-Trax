@@ -103,6 +103,21 @@ const getEngineer = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getArtist = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/users.json?orderBy="isEngineer"&equalTo=false`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const byArtist = Object.values(data).filter((artist) => !artist.isEngineer);
+      resolve(byArtist);
+    })
+    .catch(reject);
+});
+
 export {
   createUser,
   getUser,
@@ -111,4 +126,5 @@ export {
   deleteUser,
   getSingleUser,
   getEngineer,
+  getArtist,
 };
