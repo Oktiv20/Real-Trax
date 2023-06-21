@@ -8,6 +8,18 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.bground-image {
+  background-image: url("/images/vumeters.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* .logo {
+  height: 60%;
+  width: 140%;
+} */
+
 a {
   color: inherit;
   text-decoration: none;
@@ -15,10 +27,6 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-body {
-  background-color: black;
 }
 
 .project-card:hover .card-buttons,
@@ -40,4 +48,45 @@ body {
   bottom: 1px;
   left: 13%;
   transform: translateX(-50%);
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-form {
+  width: 60%;
+}
+
+.css-tj5bde-Svg {
+  display: none;
+  fill: black;
+  line-height: 1;
+  stroke: black;
+  stroke-width: 0;
+  color: black;
+}
+
+.css-1u9des2-indicatorSeparator {
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+  width: 1px;
+  color: black;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+.navbar-toggler {
+  padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
+  font-size: var(--bs-navbar-toggler-font-size);
+  line-height: 1;
+  color: var(--bs-navbar-color);
+  background-color: #ffb700;
+  border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
+  border-radius: var(--bs-navbar-toggler-border-radius);
+  transition: var(--bs-navbar-toggler-transition);
 }

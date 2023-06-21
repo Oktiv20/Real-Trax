@@ -32,7 +32,7 @@ export default function ViewProject() {
         <Card
           style={{
             width: '30rem',
-            height: '43rem',
+            height: 'auto',
             margin: '10px',
             background: 'linear-gradient(to bottom right, #FF8300, #f7b008)',
             color: 'black',
@@ -68,9 +68,9 @@ export default function ViewProject() {
               <br />
               <br />
               Notes: {projectDetails?.notes}
+              {/* <br />
               <br />
-              <br />
-              Project Status: Accepted, Pending, or Declined
+              Project Status: Accepted, Pending, or Declined */}
             </Card.Text>
           </Card.Body>
         </Card>

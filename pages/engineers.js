@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { FloatingLabel, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { getEngineer } from '../api/userData';
 import ArtistEngineerCard from '../components/ArtistEngineerCard';
 
 export default function Engineer() {
   const category = [
+    { value: '', label: 'All' },
     { value: 'Blues', label: 'Blues' },
     { value: 'Classical', label: 'Classical' },
     { value: 'Country', label: 'Country' },
@@ -23,7 +24,7 @@ export default function Engineer() {
 
   const { user } = useAuth();
   const [engineerUsers, setEngineerUsers] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('');
 
   const getAllEngineers = () => {
     getEngineer(user.uid).then(setEngineerUsers);
@@ -33,43 +34,65 @@ export default function Engineer() {
     getAllEngineers();
   }, []);
 
+  useEffect(() => {
+    if (selectedGenre !== '') {
+      getAllEngineers(); // Fetch engineer users whenever selectedGenre changes
+    }
+  }, [selectedGenre]);
+
   const handleGenreChange = (e) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, (option) => option.value);
-    setSelectedGenres(selectedOptions);
+    const selectedOption = e.target.value;
+    setSelectedGenre(selectedOption);
   };
 
-  const filteredEngineers = engineerUsers.filter((engineer) => selectedGenres.every((genre) => engineer.preferredGenre.includes(genre)));
+  const filteredEngineers = selectedGenre
+    ? engineerUsers.filter((engineer) => engineer.preferredGenre.includes(selectedGenre))
+    : engineerUsers;
 
   return (
-    <div className="text-center my-4 text-white">
-      <h1>ENGINEERS</h1>
-      <hr />
-      <FloatingLabel>
-        <Form.Select
-          controlId="floatingInput1"
-          label="Preferred Genre(s)"
-          className="mb-3"
-          value={selectedGenres}
-          onChange={handleGenreChange}
-          closemenuonselect="true"
-          placeholder="Select A Genre"
-          styles={{
-            width: '50%',
-            minHeight: '30px',
-          }}
-        >
-          {category.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </Form.Select>
-      </FloatingLabel>
-      <div className="text-center my-4 d-flex flex-wrap">
-        {filteredEngineers.map((engineer) => (
-          <ArtistEngineerCard key={engineer.firebaseKey} engineerObj={engineer} onUpdate={getAllEngineers} />
-        ))}
+    <>
+      <div className="text-center my-4 text-white">
+        <h1>ENGINEERS</h1>
+        <hr />
+        <h3 style={{
+          color: 'white',
+        }}
+        >Filter Engineers
+        </h3>
+        <Form>
+          <Form.Select
+            type="text"
+            placeholder="Filter Engineers"
+            value={selectedGenre}
+            onChange={handleGenreChange}
+            style={{
+              width: '50%',
+              minHeight: '30px',
+              marginLeft: '25%',
+              background: '#e6c200',
+              border: 'none',
+              boxShadow: 'none',
+            }}
+            className="text-center"
+          >
+            <option value="">Select Genre</option>
+            {category.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Form.Select>
+        </Form>
+        {engineerUsers.length > 0 ? (
+          <div className="text-center my-4 d-flex flex-wrap">
+            {filteredEngineers.map((engineer) => (
+              <ArtistEngineerCard key={engineer.firebaseKey} engineerObj={engineer} onUpdate={getAllEngineers} />
+            ))}
+          </div>
+        ) : (
+          <p>No engineers found.</p>
+        )}
       </div>
-    </div>
+    </>
   );
 }
