@@ -19,12 +19,17 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   // what the user should see if they are logged in
   if (user && user !== 'NO USER') { // If the user is not null and not 'NO USER', it means there is an authenticated user. In this case, the component returns a JSX fragment containing a navigation bar (NavBarAuth component) and the content of the page (Component) wrapped in a <div>
     return (
-      <>
+      <div
+        className="bground-image"
+        style={{
+          height: '1200px',
+        }}
+      >
         <NavBarAuth user={user} /> {/* NavBar only visible if user is logged in and is in every view */}
         <div className="container">
           <Component {...pageProps} />
         </div>
-      </>
+      </div>
     );
   }
   return <Signin />;

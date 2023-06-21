@@ -6,10 +6,14 @@ import Card from 'react-bootstrap/Card';
 
 export default function EngineerCard({ engineerObj }) {
   // console.log('THIS SHOULD SHOW THE ENGINEER', engineerObj);
+
+  const preferredGenre = Array.isArray(engineerObj.preferredGenre)
+    ? engineerObj.preferredGenre.join(', ')
+    : engineerObj.preferredGenre;
   return (
     <>
       <Card style={{
-        width: '25rem', height: '35rem', margin: '10px', background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black', borderRadius: '40px',
+        width: '25rem', height: 'auto', margin: '10px', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
       }}
       >
         <Card.Body>
@@ -29,7 +33,7 @@ export default function EngineerCard({ engineerObj }) {
             Daily Rate: {engineerObj?.dailyRate}
             <br />
             <br />
-            Preferred Genre(s): {engineerObj?.preferredGenre}
+            Preferred Genre(s): {preferredGenre}
             <br />
             <br />
             Experience: {engineerObj?.experience}
@@ -39,10 +43,10 @@ export default function EngineerCard({ engineerObj }) {
           </Card.Text>
           <br />
           <Link href={`/users/edit/${engineerObj?.firebaseKey}`} passHref>
-            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>EDIT</Button>
+            <Button variant="dark" className="m-2" size="lg" style={{ background: 'black', color: 'white' }}>UPDATE INFO</Button>
           </Link>
           <Link href="/engineerBookings" passHref>
-            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>BOOKINGS</Button>
+            <Button variant="dark" className="m-2" size="lg" style={{ background: 'black', color: 'white' }}>BOOKINGS</Button>
           </Link>
         </Card.Body>
       </Card>
