@@ -28,7 +28,7 @@ function BookingCard({ projectObj }) {
         <br />
         <div className="card-buttons">
           <Link href={`/bookings/${projectObj?.firebaseKey}`} passHref>
-            <Button variant="dark" className="m-2 view-button" size="sm" style={{ background: 'black', color: 'white' }}>
+            <Button variant="dark" className="m-2 view-button" size="md" style={{ background: 'black', color: 'white' }}>
               VIEW
             </Button>
           </Link>
@@ -43,11 +43,15 @@ export default BookingCard;
 BookingCard.propTypes = {
   projectObj: PropTypes.shape({
     projectName: PropTypes.string,
+    artist: PropTypes.string,
     genre: PropTypes.string,
     tempo: PropTypes.string,
     songKey: PropTypes.string,
     instruments: PropTypes.string,
-    engineer: PropTypes.bool,
+    engineer: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool,
+    ]),
     notes: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,

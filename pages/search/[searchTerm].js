@@ -8,17 +8,18 @@ export default function SearchBar() {
   const [searchItems, setSearchItems] = useState([]);
   const { user } = useAuth();
   const router = useRouter();
-  const { searchWord } = router.query;
+  const { searchTerm } = router.query;
 
   useEffect(() => {
-    globalSearch(searchWord, user.uid).then((returnArray) => setSearchItems(returnArray));
-  }, [user, searchWord]);
+    globalSearch(searchTerm, user.uid).then((returnArray) => setSearchItems(returnArray));
+  }, [user, searchTerm]);
 
   return (
     <>
-      <h1>Search Results</h1>
+      <h1 className="text-center my-4 d-flex justify-content-center flex-wrap" style={{ color: 'white' }}>Search Results</h1>
+      <hr style={{ color: 'white', borderWidth: '3px', opacity: '1' }} />
       {searchItems.map((item) => (
-        <SearchItem item={item} />
+        <SearchItem key={item.firebaseKey} item={item} />
       ))}
     </>
   );

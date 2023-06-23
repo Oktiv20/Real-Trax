@@ -6,7 +6,6 @@ import { viewProjectDetails } from '../../api/mergedData';
 export default function ViewProject() {
   const [projectDetails, setProjectDetails] = useState({});
   const router = useRouter();
-
   const { firebaseKey } = router.query;
 
   useEffect(() => {

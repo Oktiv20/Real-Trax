@@ -2,16 +2,20 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { viewEngineerBookings } from '../../api/mergedData';
+// import { getArtistProject } from '../../api/projectData';
 
 export default function ViewBooking() {
   const [projectDetails, setProjectDetails] = useState({});
   const router = useRouter();
-
   const { firebaseKey } = router.query;
 
   useEffect(() => {
     viewEngineerBookings(firebaseKey).then(setProjectDetails);
   }, [firebaseKey]);
+
+  // useEffect(() => {
+  //   getArtistProject(artistObj).then(setProjectDetails);
+  // }, [artistObj]);
 
   const instruments = Array.isArray(projectDetails.instruments)
     ? projectDetails.instruments.join(', ')
@@ -46,6 +50,9 @@ export default function ViewBooking() {
             <hr />
             <br />
             <Card.Text>
+              {/* Artist: {artistObj?.firstName} */}
+              <br />
+              <br />
               Genre: {projectDetails?.genre}
               <br />
               <br />
