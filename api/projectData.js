@@ -70,6 +70,19 @@ const getEngineerBooking = (engineerId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET ENGINEER'S ASSIGNED PROJECTS
+const getArtistProject = (artistId) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/projects.json?orderBy="artist_id"&equalTo="${artistId}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 // UPDATE PROJECT
 const updateProject = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/projects/${payload.firebaseKey}.json`, {
@@ -109,4 +122,5 @@ export {
   updateProject,
   deleteSingleProject,
   getEngineerBooking,
+  getArtistProject,
 };
