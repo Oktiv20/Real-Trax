@@ -33,11 +33,12 @@ export default function ArtistCard({ artistObj }) {
             <br />
             Title: {artistObj.title}
           </Card.Text>
-          <Link href={`/users/edit/${artistObj.firebaseKey}`} passHref>
-            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>UPDATE INFORMATION</Button>
-          </Link>
           <Link href="/projects" passHref>
             <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>PROJECTS</Button>
+          </Link>
+          <br />
+          <Link href={`/users/edit/${artistObj.firebaseKey}`} passHref>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>UPDATE INFO</Button>
           </Link>
         </Card.Body>
       </Card>

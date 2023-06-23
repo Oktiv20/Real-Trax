@@ -53,7 +53,7 @@ export default function Engineer() {
     <>
       <div className="text-center my-4 text-white">
         <h1>ENGINEERS</h1>
-        <hr />
+        <hr style={{ color: 'white', borderWidth: '3px', opacity: '0.5' }} />
         <h3 style={{
           color: 'white',
         }}
