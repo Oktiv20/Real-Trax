@@ -20,7 +20,7 @@ function Home() {
   return (
     <div className="text-center my-4 text-white">
       <h1>PROFILE PAGE</h1>
-      <hr />
+      <hr style={{ color: 'white', borderWidth: '3px', opacity: '0.5' }} />
       <div className="text-center my-4 d-flex justify-content-center flex-wrap">
         {profileView.isEngineer ? (
           <EngineerCard key={profileView?.firebaseKey} engineerObj={profileView} />

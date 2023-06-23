@@ -29,7 +29,6 @@ export default function ProjectForm({ projectObj }) {
   const router = useRouter();
   const { user } = useAuth();
   const [selectedInstruments, setSelectedInstruments] = useState([]);
-  // const [selectedFile, setSelectedFile] = useState(null);
 
   const sounds = [
     { value: 'Drums', label: 'Drums' },
@@ -45,13 +44,14 @@ export default function ProjectForm({ projectObj }) {
   ];
 
   useEffect(() => {
-    getArtist().then(setArtists);
+    getArtist(user.uid).then(setArtists);
     getEngineer().then(setEngineers);
     if (projectObj?.firebaseKey) {
       setFormInput((prevState) => ({
         ...prevState,
         ...projectObj,
         engineer: projectObj.engineer || '',
+        // artist: user.firebaseKey || '',
         engineer_id: projectObj.engineer_id || '',
         artist_id: projectObj.artist_id || '',
       }));
@@ -93,7 +93,7 @@ export default function ProjectForm({ projectObj }) {
     } else {
       const selectedEngineer = engineers.find((engineer) => engineer.lastName === formInput.engineer);
       const engineerId = selectedEngineer ? selectedEngineer.firebaseKey : '';
-      const selectedArtist = artists.find((artist) => artist.lastName === formInput.artist);
+      const selectedArtist = artists && artists.find((artist) => artist.firebaseKey);
       const artistId = selectedArtist ? selectedArtist.firebaseKey : '';
       const payload = {
         ...formInput,
@@ -325,15 +325,6 @@ export default function ProjectForm({ projectObj }) {
             />
           </FloatingLabel>
 
-          {/* <FloatingLabel controlId="floatingInput8" className="mb-3">
-      <input
-        type="file"
-        name="file"
-        value={selectedFile}
-        onChange={(e) => setSelectedFile(e.target.files[0])}
-      />
-    </FloatingLabel> */}
-
           {/* SUBMIT BUTTON */}
           <Button
             type="submit"
@@ -382,8 +373,12 @@ ProjectForm.propTypes = {
     genre: PropTypes.string,
     tempo: PropTypes.string,
     songKey: PropTypes.string,
-    instruments: PropTypes.array,
+    instruments: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
     engineer: PropTypes.string,
+    artist: PropTypes.string,
     engineer_id: PropTypes.string,
     artist_id: PropTypes.string,
     notes: PropTypes.string,

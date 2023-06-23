@@ -89,67 +89,74 @@ export default function UserForm({ obj }) {
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit}
+    <div
+      className="bground-image"
       style={{
-        marginTop: '10px',
-        padding: '30px',
-        width: '450px',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: '1em',
+        height: '1000px',
       }}
     >
-      <h2 className="mt-5" style={{ paddingBottom: '50px', color: 'white' }}>
-        {obj?.firebaseKey ? 'Update' : 'Create'} User
-      </h2>
+      <Form
+        onSubmit={handleSubmit}
+        style={{
+          marginLeft: '500px',
+          padding: '30px',
+          width: '450px',
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: '1em',
+          backgroundColor: 'black',
+        }}
+      >
+        <h2 className="mt-5" style={{ paddingBottom: '50px', color: 'white' }}>
+          {obj?.firebaseKey ? 'Update' : 'Create'} User
+        </h2>
 
-      {/* FIRST NAME INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
-        <Form.Control type="text" placeholder="Enter your first name" name="firstName" value={formInfo.firstName || ''} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* FIRST NAME INPUT  */}
+        <FloatingLabel controlId="floatingInput1" label="First Name" className="mb-3">
+          <Form.Control type="text" placeholder="Enter your first name" name="firstName" value={formInfo.firstName || ''} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* LAST NAME INPUT  */}
-      <FloatingLabel controlId="floatingInput2" label="Last Name" className="mb-3">
-        <Form.Control type="text" placeholder="Enter your last name" name="lastName" value={formInfo.lastName || ''} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* LAST NAME INPUT  */}
+        <FloatingLabel controlId="floatingInput2" label="Last Name" className="mb-3">
+          <Form.Control type="text" placeholder="Enter your last name" name="lastName" value={formInfo.lastName || ''} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* EMAIL INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Email" className="mb-3">
-        <Form.Control type="email" placeholder="Enter Email" name="email" value={formInfo.email || ''} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* EMAIL INPUT  */}
+        <FloatingLabel controlId="floatingInput3" label="Email" className="mb-3">
+          <Form.Control type="email" placeholder="Enter Email" name="email" value={formInfo.email || ''} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* PHONE NUMBER INPUT  */}
-      <FloatingLabel controlId="floatingInput4" label="Phone Number" className="mb-3">
-        <Form.Control type="tel" placeholder="###-###-####" name="phoneNumber" value={formInfo.phoneNumber || ''} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* PHONE NUMBER INPUT  */}
+        <FloatingLabel controlId="floatingInput4" label="Phone Number" className="mb-3">
+          <Form.Control type="tel" placeholder="###-###-####" name="phoneNumber" value={formInfo.phoneNumber || ''} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* TITLE INPUT  */}
-      <FloatingLabel controlId="floatingInput5" label="Title" className="mb-3">
-        <Form.Control type="text" placeholder="title" name="title" value={formInfo.title || ''} onChange={handleChange} required />
-      </FloatingLabel>
+        {/* TITLE INPUT  */}
+        <FloatingLabel controlId="floatingInput5" label="Title" className="mb-3">
+          <Form.Control type="text" placeholder="title" name="title" value={formInfo.title || ''} onChange={handleChange} required />
+        </FloatingLabel>
 
-      {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
-      <div>
-        <Form.Check
-          className="text-white mb-3"
-          type="checkbox"
-          id="isEngineer"
-          name="isEngineer"
-          label="Engineer?"
-          checked={formInfo.isEngineer}
-          onChange={(e) => {
-            setFormInfo((prevState) => ({
-              ...prevState,
-              isEngineer: e.target.checked,
-              handleBooleanChange,
-            }));
-          }}
-          onClick={() => setShowEngineer(true)}
-        />
-      </div>
+        {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
+        <div>
+          <Form.Check
+            className="text-white mb-3"
+            type="checkbox"
+            id="isEngineer"
+            name="isEngineer"
+            label="Engineer?"
+            checked={formInfo.isEngineer}
+            onChange={(e) => {
+              setFormInfo((prevState) => ({
+                ...prevState,
+                isEngineer: e.target.checked,
+                handleBooleanChange,
+              }));
+            }}
+            onClick={() => setShowEngineer(true)}
+          />
+        </div>
 
-      { showEngineer
+        { showEngineer
         && (
         <div>
           <FloatingLabel controlId="floatingInput6" label="Daily Rate" className="mb-3">
@@ -186,11 +193,12 @@ export default function UserForm({ obj }) {
         </div>
         )}
 
-      {/* SUBMIT BUTTON  */}
-      <Button variant="outline-light" type="submit">
-        {obj?.firebaseKey ? 'Update' : 'Create'} User
-      </Button>
-    </Form>
+        {/* SUBMIT BUTTON  */}
+        <Button variant="dark" type="submit" style={{ color: '#e6c200' }}>
+          {obj?.firebaseKey ? 'Update' : 'Create'} User
+        </Button>
+      </Form>
+    </div>
   );
 }
 
@@ -202,7 +210,10 @@ UserForm.propTypes = {
     email: PropTypes.string,
     phoneNumber: PropTypes.string,
     dailyRate: PropTypes.string,
-    preferredGenre: PropTypes.string,
+    preferredGenre: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
     experience: PropTypes.string,
     creditsLink: PropTypes.string,
     isEngineer: PropTypes.bool,

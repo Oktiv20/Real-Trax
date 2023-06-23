@@ -5,8 +5,6 @@ import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
 export default function EngineerCard({ engineerObj }) {
-  // console.log('THIS SHOULD SHOW THE ENGINEER', engineerObj);
-
   const preferredGenre = Array.isArray(engineerObj.preferredGenre)
     ? engineerObj.preferredGenre.join(', ')
     : engineerObj.preferredGenre;
@@ -42,11 +40,12 @@ export default function EngineerCard({ engineerObj }) {
             Link to Credits: {engineerObj?.creditsLink}
           </Card.Text>
           <br />
-          <Link href={`/users/edit/${engineerObj?.firebaseKey}`} passHref>
-            <Button variant="dark" className="m-2" size="lg" style={{ background: 'black', color: 'white' }}>UPDATE INFO</Button>
-          </Link>
           <Link href="/engineerBookings" passHref>
-            <Button variant="dark" className="m-2" size="lg" style={{ background: 'black', color: 'white' }}>BOOKINGS</Button>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>BOOKINGS</Button>
+          </Link>
+          <br />
+          <Link href={`/users/edit/${engineerObj?.firebaseKey}`} passHref>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>UPDATE INFO</Button>
           </Link>
         </Card.Body>
       </Card>
@@ -62,7 +61,10 @@ EngineerCard.propTypes = {
     email: PropTypes.string,
     phoneNumber: PropTypes.string,
     dailyRate: PropTypes.string,
-    preferredGenre: PropTypes.string,
+    preferredGenre: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
     experience: PropTypes.string,
     creditsLink: PropTypes.string,
     isEngineer: PropTypes.bool,

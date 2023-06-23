@@ -6,10 +6,12 @@ import {
 } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { signOut } from '../utils/auth';
+import { useAuth } from '../utils/context/authContext';
 
 export default function NavBarAuth() {
   const [filter, setFilter] = useState('');
   const router = useRouter();
+  const { user } = useAuth();
 
   const onSearch = (event) => {
     event.preventDefault();
@@ -36,10 +38,11 @@ export default function NavBarAuth() {
             border: 'none',
             height: '40px',
             width: '230px',
-            borderRadius: '40px',
+            borderRadius: '10px',
             boxShadow: 'none',
             color: 'black',
             outline: 'none',
+            marginRight: '5px',
           }}
           placeholder="Search Projects & Engineers"
           onChange={(event) => setFilter(event.target.value)}
@@ -50,7 +53,7 @@ export default function NavBarAuth() {
             border: 'none',
             height: '38px',
             width: '70px',
-            borderRadius: '40px',
+            borderRadius: '10px',
             boxShadow: 'none',
           }}
           type="submit"
@@ -62,6 +65,11 @@ export default function NavBarAuth() {
             <Link passHref href="/engineers">
               <Nav.Link style={{ color: '#ffb700' }}>Engineers</Nav.Link>
             </Link>
+            {/* {user.isEngineer === false ? (
+              <Link passHref href="/projects">
+                <Nav.Link style={{ color: '#ffb700' }}>Projects</Nav.Link>
+              </Link>
+            ) : null} */}
             <Link passHref href="/projects">
               <Nav.Link style={{ color: '#ffb700' }}>Projects</Nav.Link>
             </Link>
