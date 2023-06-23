@@ -6,12 +6,12 @@ import {
 } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+// import { useAuth } from '../utils/context/authContext';
 
 export default function NavBarAuth() {
   const [filter, setFilter] = useState('');
   const router = useRouter();
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   const onSearch = (event) => {
     event.preventDefault();
