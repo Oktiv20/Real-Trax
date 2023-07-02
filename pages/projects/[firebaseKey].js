@@ -12,6 +12,7 @@ export default function ViewProject() {
     viewProjectDetails(firebaseKey).then(setProjectDetails);
   }, [firebaseKey]);
 
+  // This checks if the projectDetails.instruments is an array by using the Array.isArray() method. It returns true if projectDetails.instruments is an array. If projectDetails.instruments is an array, it joins the elements of the projectDetails.instruments array into a single string, separated by commas and a space.
   const instruments = Array.isArray(projectDetails.instruments)
     ? projectDetails.instruments.join(', ')
     : projectDetails.instruments;
@@ -19,19 +20,20 @@ export default function ViewProject() {
   return (
     <div className="text-center my-4 text-white">
       <h1>PROJECT DETAILS</h1>
-      <hr />
+      <hr style={{ color: 'white', borderWidth: '3px', opacity: '0.5' }} />
       <div
         style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '100vh',
+          height: '80vh',
         }}
       >
         <Card
           style={{
             width: '30rem',
             height: 'auto',
+            marginTop: '0px',
             margin: '10px',
             background: 'linear-gradient(to bottom right, #FF8300, #f7b008)',
             color: 'black',

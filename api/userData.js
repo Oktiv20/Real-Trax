@@ -2,6 +2,7 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
+// CREATE USER
 const createUser = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json`, {
     method: 'POST',
@@ -15,6 +16,7 @@ const createUser = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET USER
 const getUser = (uid) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
@@ -33,6 +35,7 @@ const getUser = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET USER'S LOGIN INFO
 const getUserLogin = (uid) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
@@ -51,6 +54,7 @@ const getUserLogin = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// UPDATE USER
 const updateUser = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users/${payload.firebaseKey}.json`, {
     method: 'PATCH',
@@ -64,6 +68,7 @@ const updateUser = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// DELETE USER
 const deleteUser = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users/${firebaseKey}.json`, {
     method: 'DELETE',
@@ -76,6 +81,7 @@ const deleteUser = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET SINGLE USER
 const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users/${firebaseKey}.json`, {
     method: 'GET',
@@ -88,6 +94,7 @@ const getSingleUser = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET ENGINEER
 const getEngineer = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json?orderBy="isEngineer"&equalTo=true`, {
     method: 'GET',
@@ -103,6 +110,7 @@ const getEngineer = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET ARTIST
 const getArtist = (uid) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/users.json?orderBy="isEngineer"&equalTo=false`, {
     method: 'GET',
@@ -114,7 +122,6 @@ const getArtist = (uid) => new Promise((resolve, reject) => {
     .then((data) => {
       const byArtist = Object.values(data).filter((artist) => !artist.isEngineer && artist.uid === uid);
       resolve(byArtist);
-      // console.log(byArtist);
     })
     .catch(reject);
 });

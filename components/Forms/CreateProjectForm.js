@@ -51,7 +51,6 @@ export default function ProjectForm({ projectObj }) {
         ...prevState,
         ...projectObj,
         engineer: projectObj.engineer || '',
-        // artist: user.firebaseKey || '',
         engineer_id: projectObj.engineer_id || '',
         artist_id: projectObj.artist_id || '',
       }));
@@ -76,6 +75,7 @@ export default function ProjectForm({ projectObj }) {
     }));
   };
 
+  // This is a function called handleInstrumentChange that takes selectedOptions as an argument and then updates the state of setSelectedInstruments with that selectedOptions argument. A function called selectedValues then takes the value property from each selected option and creates an array of those values. This updates the formInput state object by merging the previous state (prevState) using the spread operator (...prevState) and setting the instruments property to the selected values joined by a comma.
   const handleInstrumentChange = (selectedOptions) => {
     setSelectedInstruments(selectedOptions);
     const selectedValues = selectedOptions.map((option) => option.value);
@@ -91,10 +91,10 @@ export default function ProjectForm({ projectObj }) {
       updateProject(formInput)
         .then(() => router.push(`/projects/${projectObj.firebaseKey}`));
     } else {
-      const selectedEngineer = engineers.find((engineer) => engineer.lastName === formInput.engineer);
-      const engineerId = selectedEngineer ? selectedEngineer.firebaseKey : '';
-      const selectedArtist = artists && artists.find((artist) => artist.firebaseKey);
-      const artistId = selectedArtist ? selectedArtist.firebaseKey : '';
+      const selectedEngineer = engineers.find((engineer) => engineer.lastName === formInput.engineer); // The selectedEngineer function searches the engineers array to find an engineer whose lastName property matches the value of formInput.engineer.
+      const engineerId = selectedEngineer ? selectedEngineer.firebaseKey : ''; // If selectedEngineer exists, engineerId assigns the firebaseKey property to the selectedEngineer
+      const selectedArtist = artists && artists.find((artist) => artist.firebaseKey); // The selectedArtist function searches the artists array to find an artist object with a firebaseKey
+      const artistId = selectedArtist ? selectedArtist.firebaseKey : ''; // If selectedArtist exists, artistId assigns the firebaseKey property to the selectedArtist
       const payload = {
         ...formInput,
         uid: user.uid,
@@ -110,7 +110,8 @@ export default function ProjectForm({ projectObj }) {
   return (
     <>
       <div>
-        <h1 className="center-container text-white mt-5 mb-5">{projectObj?.firebaseKey ? 'Update' : 'Create'} Projects</h1>
+        <h1 className="center-container text-white mt-4">{projectObj?.firebaseKey ? 'Update' : 'Create'} Project</h1>
+        <hr style={{ color: 'white', borderWidth: '3px', opacity: '0.5' }} />
         <Form
           className="create-form"
           style={{
@@ -118,7 +119,6 @@ export default function ProjectForm({ projectObj }) {
           }}
           onSubmit={handleSubmit}
         >
-
           {/* PROJECT NAME INPUT */}
           <FloatingLabel
             controlId="floatingInput1"
