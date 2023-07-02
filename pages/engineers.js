@@ -6,6 +6,10 @@ import { getEngineer } from '../api/userData';
 import ArtistEngineerCard from '../components/ArtistEngineerCard';
 
 export default function Engineer() {
+  const { user } = useAuth();
+  const [engineerUsers, setEngineerUsers] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('');
+
   const category = [
     { value: '', label: 'All' },
     { value: 'Blues', label: 'Blues' },
@@ -21,10 +25,6 @@ export default function Engineer() {
     { value: 'R&B', label: 'R&B' },
     { value: 'Soul', label: 'Soul' },
   ];
-
-  const { user } = useAuth();
-  const [engineerUsers, setEngineerUsers] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState('');
 
   const getAllEngineers = () => {
     getEngineer(user.uid).then(setEngineerUsers);
@@ -71,7 +71,7 @@ export default function Engineer() {
               marginLeft: '25%',
               background: '#e6c200',
               border: 'none',
-              boxShadow: 'none',
+              boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
             }}
             className="text-center"
           >
