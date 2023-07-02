@@ -1,17 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
   Navbar, Container, Nav, Button, Image,
 } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { signOut } from '../utils/auth';
-// import { useAuth } from '../utils/context/authContext';
+import { useAuth } from '../utils/context/authContext';
+import { getUser } from '../api/userData';
 
 export default function NavBarAuth() {
   const [filter, setFilter] = useState('');
   const router = useRouter();
-  // const { user } = useAuth();
+  const { user } = useAuth();
+  const [navbarView, setNavbarView] = useState({});
 
   const onSearch = (event) => {
     event.preventDefault();
@@ -19,6 +22,14 @@ export default function NavBarAuth() {
       router.push(`/search/${filter}`);
     }
   };
+
+  const getUserData = () => {
+    getUser(user.uid).then(setNavbarView);
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="black">
@@ -54,7 +65,7 @@ export default function NavBarAuth() {
             height: '38px',
             width: '70px',
             borderRadius: '10px',
-            boxShadow: 'none',
+            boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
           }}
           type="submit"
           onClick={(event) => onSearch(event)}
@@ -65,14 +76,18 @@ export default function NavBarAuth() {
             <Link passHref href="/engineers">
               <Nav.Link style={{ color: '#ffb700' }}>Engineers</Nav.Link>
             </Link>
-            {/* {user.isEngineer === false ? (
+            {navbarView.isEngineer ? (
+              <Link href="/engineerBookings" passHref>
+                <Nav.Link style={{ color: '#ffb700' }}>Bookings</Nav.Link>
+              </Link>
+            ) : (
               <Link passHref href="/projects">
                 <Nav.Link style={{ color: '#ffb700' }}>Projects</Nav.Link>
               </Link>
-            ) : null} */}
-            <Link passHref href="/projects">
+            )}
+            {/* <Link passHref href="/projects">
               <Nav.Link style={{ color: '#ffb700' }}>Projects</Nav.Link>
-            </Link>
+            </Link> */}
             <Link passHref href="/">
               <Nav.Link style={{ color: '#ffb700' }}>Profile</Nav.Link>
             </Link>
