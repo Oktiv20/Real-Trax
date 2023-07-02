@@ -8,7 +8,6 @@ import { useAuth } from '../utils/context/authContext';
 
 export default function Projects() {
   const { user } = useAuth();
-
   const [projects, setProjects] = useState([]);
 
   const getAllProjects = () => {
@@ -24,7 +23,7 @@ export default function Projects() {
       <h1>PROJECTS</h1>
       <hr style={{ color: 'white', borderWidth: '3px', opacity: '0.5' }} />
       <Link href="/projects/new" passHref>
-        <Button variant="dark" style={{ background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black' }}>Add A Project</Button>
+        <Button variant="dark" size="lg" style={{ background: 'linear-gradient(to bottom right, #FF8300, #f7b008)', color: 'black', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)' }}>Create Project</Button>
       </Link>
       <div className="text-center my-4 d-flex justify-content-center flex-wrap">
         {projects.map((project) => (

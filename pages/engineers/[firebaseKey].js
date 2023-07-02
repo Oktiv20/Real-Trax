@@ -12,6 +12,7 @@ export default function ViewUser() {
     getSingleUser(firebaseKey).then(setEngineerObj);
   }, [firebaseKey]);
 
+  // This checks if the engineerObj?.preferredGenre is an array by using the Array.isArray() method. It returns true if engineerObj?.preferredGenre is an array. If engineerObj?.preferredGenre is an array, it joins the elements of the engineerObj?.preferredGenre array into a single string, separated by commas and a space.
   const preferredGenre = Array.isArray(engineerObj?.preferredGenre)
     ? engineerObj?.preferredGenre.join(', ')
     : engineerObj?.preferredGenre;

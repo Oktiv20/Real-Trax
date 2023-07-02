@@ -34,7 +34,7 @@ export default function ArtistCard({ artistObj }) {
             Title: {artistObj.title}
           </Card.Text>
           <Link href="/projects" passHref>
-            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>PROJECTS</Button>
+            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>MY PROJECTS</Button>
           </Link>
           <br />
           <Link href={`/users/edit/${artistObj.firebaseKey}`} passHref>

@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
 import ReactSelect from 'react-select';
@@ -63,8 +64,9 @@ export default function UserForm({ obj }) {
     setFormInfo((prevState) => ({ ...prevState, [name]: newValue }));
   };
 
+  // This is a function called handleGenreChange that takes selectedOptions as a parameter.
   const handleGenreChange = (selectedOptions) => {
-    const selectedValues = selectedOptions.map((option) => option.value);
+    const selectedValues = selectedOptions.map((option) => option.value); // This line extracts the value property from each option in the selectedOptions array and creates a new array called selectedValues.
     setFormInfo((prevState) => ({
       ...prevState,
       preferredGenre: selectedValues,

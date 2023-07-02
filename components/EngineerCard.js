@@ -5,13 +5,14 @@ import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
 export default function EngineerCard({ engineerObj }) {
+  // This checks if the engineerObj.preferredGenre is an array by using the Array.isArray() method. It returns true if engineerObj.preferredGenre is an array. If engineer.preferredGenre is an array, it joins the elements of the engineerObj.preferredGenre array into a single string, separated by commas and a space.
   const preferredGenre = Array.isArray(engineerObj.preferredGenre)
     ? engineerObj.preferredGenre.join(', ')
     : engineerObj.preferredGenre;
   return (
     <>
       <Card style={{
-        width: '25rem', height: 'auto', margin: '10px', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
+        width: '20rem', height: 'auto', margin: '10px', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
       }}
       >
         <Card.Body>

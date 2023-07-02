@@ -2,10 +2,11 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { viewEngineerBookings } from '../../api/mergedData';
-// import { getArtistProject } from '../../api/projectData';
+// import { getSingleUser } from '../../api/userData';
 
 export default function ViewBooking() {
   const [projectDetails, setProjectDetails] = useState({});
+  // const [artistObj, setArtistObj] = useState({});
   const router = useRouter();
   const { firebaseKey } = router.query;
 
@@ -14,9 +15,13 @@ export default function ViewBooking() {
   }, [firebaseKey]);
 
   // useEffect(() => {
-  //   getArtistProject(artistObj).then(setProjectDetails);
-  // }, [artistObj]);
+  //   if (projectDetails.artist_id) {
+  //     viewUserInfo(firebaseKey)
+  //       .then(setArtistObj);
+  //   }
+  // }, [firebaseKey, projectDetails.artist_id]);
 
+  // This checks if the projectDetails.instruments is an array by using the Array.isArray() method. It returns true if projectDetails.instruments is an array. If projectDetails.instruments is an array, it joins the elements of the projectDetails.instruments array into a single string, separated by commas and a space.
   const instruments = Array.isArray(projectDetails.instruments)
     ? projectDetails.instruments.join(', ')
     : projectDetails.instruments;
@@ -24,7 +29,7 @@ export default function ViewBooking() {
   return (
     <div className="text-center my-4 text-white">
       <h1>BOOKING DETAILS</h1>
-      <hr />
+      <hr style={{ color: 'white', borderWidth: '3px', opacity: '0.5' }} />
       <div
         style={{
           display: 'flex',
@@ -50,9 +55,9 @@ export default function ViewBooking() {
             <hr />
             <br />
             <Card.Text>
-              {/* Artist: {artistObj?.firstName} */}
+              {/* Artist: {artistObj?.firstName} {artistObj?.lastName}
               <br />
-              <br />
+              <br /> */}
               Genre: {projectDetails?.genre}
               <br />
               <br />

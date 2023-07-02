@@ -70,7 +70,7 @@ const getEngineerBooking = (engineerId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// GET ENGINEER'S ASSIGNED PROJECTS
+// GET ARTIST'S PROJECTS
 const getArtistProject = (artistId) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/projects.json?orderBy="artist_id"&equalTo="${artistId}"`, {
     method: 'GET',
