@@ -34,7 +34,7 @@ Being an independent artist is difficult as it is. I's even more difficult if yo
 [Loom]()
 
 # Screenshots
-![Artist Profile View]()
+![Artist Profile View](Profile)
 ![Filter Engineers]()
 ![Create Project]()
 ![Project Details]()
