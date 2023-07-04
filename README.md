@@ -22,7 +22,7 @@ Being an independent artist is difficult as it is. I's even more difficult if yo
 [Real-Trax](https://github.com/Oktiv20/Real-Trax)
 
 # Netlify Deploy
-[Netlify Link](https://team-roster-kb.netlify.app/)
+[Netlify Link](https://real-trax.netlify.app)
 
 # Figma
 [Figma](https://www.figma.com/file/vhA9GBZ1qYTHk462J7mOcE/Real-Trax-Figma?type=design&node-id=0-1&mode=design&t=5TA7JsZLIFoz8RD0-0)
@@ -34,10 +34,10 @@ Being an independent artist is difficult as it is. I's even more difficult if yo
 [Loom]()
 
 # Screenshots
-![Artist Profile View](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Artist%20Profile%20Page%20View.png)
-![Filter Engineers]()
-![Create Project]()
-![Project Details]()
+![Artist Profile View](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Artist%20View.png)
+![Engineer Profile View](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Engineers%20View.png)
+![Projects](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Projects%20View.png)
+![Project Details](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Project%20Details%20View.png)
 
 # Contributors
 
