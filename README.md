@@ -34,7 +34,7 @@ Being an independent artist is difficult as it is. I's even more difficult if yo
 [Loom]()
 
 # Screenshots
-![Artist Profile View](Profile)
+![Artist Profile View](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Artist%20Profile%20Page%20View.png)
 ![Filter Engineers]()
 ![Create Project]()
 ![Project Details]()
