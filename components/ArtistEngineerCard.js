@@ -9,7 +9,7 @@ export default function ArtistEngineerCard({ engineerObj }) {
   return (
     <>
       <Card style={{
-        width: '20rem', height: 'auto', margin: '10px', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
+        width: '19rem', height: 'auto', margin: '10px', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)', opacity: '0.87',
       }}
       >
         <Card.Body>
@@ -20,22 +20,22 @@ export default function ArtistEngineerCard({ engineerObj }) {
             <hr />
           </Card.Title>
           <Card.Text>
-            Phone Number: {engineerObj.phoneNumber}
-            <br />
-            <br />
-            Email: {engineerObj.email}
-            <br />
-            <br />
-            Daily Rate: {engineerObj.dailyRate}
-            <br />
-            <br />
-            Preferred Genre: {preferredGenre}
-            <br />
-            <br />
-            Experience: {engineerObj.experience}
-            <br />
-            <br />
-            Link to Credits: {engineerObj.creditsLink}
+            <strong>Phone:</strong> {engineerObj?.phoneNumber}
+          </Card.Text>
+          <Card.Text>
+            <strong>Email:</strong> {engineerObj?.email}
+          </Card.Text>
+          <Card.Text>
+            <strong>Daily Rate:</strong> {engineerObj?.dailyRate}
+          </Card.Text>
+          <Card.Text>
+            <strong>Preferred Genre(s):</strong> {preferredGenre}
+          </Card.Text>
+          <Card.Text>
+            <strong>Experience:</strong> {engineerObj?.experience}
+          </Card.Text>
+          <Card.Text>
+            <strong>Credits Link:</strong> {engineerObj?.creditsLink}
           </Card.Text>
         </Card.Body>
       </Card>
