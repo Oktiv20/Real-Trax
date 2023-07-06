@@ -189,8 +189,8 @@ export default function UserForm({ obj }) {
             <Form.Control type="textarea" placeholder="Experience" style={{ height: '75px' }} name="experience" value={formInfo.experience || ''} onChange={handleChange} required />
           </FloatingLabel>
 
-          <FloatingLabel controlId="floatingInput7" label="Credits Link" className="mb-3">
-            <Form.Control type="text" placeholder="Credits Link" name="creditsLink" value={formInfo.creditsLink || ''} onChange={handleChange} required />
+          <FloatingLabel controlId="floatingInput7" label="Credits" className="mb-3">
+            <Form.Control type="text" placeholder="Credits" name="creditsLink" value={formInfo.creditsLink || ''} onChange={handleChange} required />
           </FloatingLabel>
         </div>
         )}

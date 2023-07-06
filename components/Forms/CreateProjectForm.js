@@ -115,7 +115,7 @@ export default function ProjectForm({ projectObj }) {
         <Form
           className="create-form"
           style={{
-            width: '40%', height: 'auto', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)', justifyContent: 'center', position: 'relative', marginRight: '0px', marginLeft: '30%',
+            width: '40%', height: 'auto', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)', justifyContent: 'center', position: 'relative', marginRight: '0px', marginLeft: '30%', marginBottom: '20%', opacity: '0.9',
           }}
           onSubmit={handleSubmit}
         >
