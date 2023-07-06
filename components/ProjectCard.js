@@ -24,6 +24,7 @@ function ProjectCard({ projectObj, onUpdate }) {
         justifyContent: 'center',
         boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
         position: 'relative',
+        opacity: '0.9',
       }}
     >
       <Card.Body>
