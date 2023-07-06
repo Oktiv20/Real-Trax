@@ -25,7 +25,7 @@ export default function Bookings() {
     <div className="text-center my-4 text-white">
       <h1>MY BOOKINGS</h1>
       <hr style={{ color: 'white', borderWidth: '3px', opacity: '0.5' }} />
-      <div className="d-flex flex-wrap">
+      <div className="text-center my-4 d-flex flex-wrap justify-content-center">
         {bookings.map((booking) => (
           <BookingCard key={booking.firebaseKey} projectObj={booking} onUpdate={getEngineerBooking} />
         ))}

@@ -12,42 +12,70 @@ export default function EngineerCard({ engineerObj }) {
   return (
     <>
       <Card style={{
-        width: '20rem', height: 'auto', margin: '10px', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
+        width: '350px',
+        margin: '10px',
+        background: 'linear-gradient(to bottom right, #e6c200, #ffb700)',
+        color: 'black',
+        borderRadius: '40px',
+        boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
+        opacity: '0.87',
       }}
       >
-        <Card.Body>
-          <Card.Title style={{
-            fontSize: '35px',
+        <Card.Body style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '110px',
+            width: '100px',
+            backgroundColor: 'white',
+            borderRadius: '30%',
+            marginBottom: '20px',
+            opacity: '0.9',
           }}
-          >{engineerObj?.firstName} {engineerObj?.lastName}
+          >
+            <Card.Img
+              variant="top"
+              src="Images/engineerImage.png"
+              style={{
+                height: '90px', width: '90px', borderRadius: '20%', objectFit: 'cover',
+              }}
+            />
+          </div>
+          <Card.Title style={{ fontSize: '40px', marginBottom: '10px' }}>
+            {engineerObj?.firstName} {engineerObj?.lastName}
           </Card.Title>
           <br />
           <Card.Text>
-            Phone Number: {engineerObj?.phoneNumber}
-            <br />
-            <br />
-            Email: {engineerObj?.email}
-            <br />
-            <br />
-            Daily Rate: {engineerObj?.dailyRate}
-            <br />
-            <br />
-            Preferred Genre(s): {preferredGenre}
-            <br />
-            <br />
-            Experience: {engineerObj?.experience}
-            <br />
-            <br />
-            Link to Credits: {engineerObj?.creditsLink}
+            <strong>Phone:</strong> {engineerObj?.phoneNumber}
           </Card.Text>
-          <br />
-          <Link href="/engineerBookings" passHref>
-            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>BOOKINGS</Button>
-          </Link>
-          <br />
-          <Link href={`/users/edit/${engineerObj?.firebaseKey}`} passHref>
-            <Button variant="dark" className="m-2" size="md" style={{ background: 'black', color: 'white' }}>UPDATE INFO</Button>
-          </Link>
+          <Card.Text>
+            <strong>Email:</strong> {engineerObj?.email}
+          </Card.Text>
+          <Card.Text>
+            <strong>Daily Rate:</strong> {engineerObj?.dailyRate}
+          </Card.Text>
+          <Card.Text>
+            <strong>Preferred Genre(s):</strong> {preferredGenre}
+          </Card.Text>
+          <Card.Text>
+            <strong>Experience:</strong> {engineerObj?.experience}
+          </Card.Text>
+          <Card.Text>
+            <strong>Credits Link:</strong> {engineerObj?.creditsLink}
+          </Card.Text>
+          <div style={{ display: 'flex' }}>
+            <Link href="/engineerBookings" passHref>
+              <Button variant="dark" style={{ background: 'black', color: 'white', marginRight: '40px' }}>
+                BOOKINGS
+              </Button>
+            </Link>
+            <Link href={`/users/edit/${engineerObj?.firebaseKey}`} passHref>
+              <Button variant="dark" style={{ background: 'black', color: 'white' }}>
+                UPDATE INFO
+              </Button>
+            </Link>
+          </div>
         </Card.Body>
       </Card>
     </>

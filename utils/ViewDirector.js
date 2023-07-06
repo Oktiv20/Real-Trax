@@ -21,9 +21,6 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     return (
       <div
         className="bground-image"
-        style={{
-          height: '1200px',
-        }}
       >
         <NavBarAuth user={user} /> {/* NavBar only visible if user is logged in and is in every view */}
         <div className="container">

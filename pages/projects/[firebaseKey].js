@@ -27,6 +27,7 @@ export default function ViewProject() {
           justifyContent: 'center',
           alignItems: 'center',
           height: '80vh',
+          opacity: '0.9',
         }}
       >
         <Card
@@ -53,22 +54,24 @@ export default function ViewProject() {
               fontSize: '20px',
             }}
             >
-              Genre: {projectDetails?.genre}
-              <br />
-              <br />
-              Tempo: {projectDetails?.tempo}
-              <br />
-              <br />
-              Key: {projectDetails?.songKey}
-              <br />
-              <br />
-              Instrument(s): {instruments}
-              <br />
-              <br />
-              Engineer: {projectDetails?.engineer}
-              <br />
-              <br />
-              Notes: {projectDetails?.notes}
+              <Card.Text>
+                <strong>Genre:</strong> {projectDetails?.genre}
+              </Card.Text>
+              <Card.Text>
+                <strong>Tempo:</strong> {projectDetails?.tempo}
+              </Card.Text>
+              <Card.Text>
+                <strong>Key:</strong> {projectDetails?.songKey}
+              </Card.Text>
+              <Card.Text>
+                <strong>Instrument(s):</strong> {instruments}
+              </Card.Text>
+              <Card.Text>
+                <strong>Engineer:</strong> {projectDetails?.engineer}
+              </Card.Text>
+              <Card.Text>
+                <strong>Notes:</strong> {projectDetails?.notes}
+              </Card.Text>
               {/* <br />
               <br />
               Project Status: Accepted, Pending, or Declined */}
