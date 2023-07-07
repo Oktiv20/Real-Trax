@@ -26,17 +26,17 @@ export default function ViewProject() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '80vh',
+          height: '55vh',
           opacity: '0.9',
         }}
       >
         <Card
           style={{
             width: '30rem',
-            height: 'auto',
+            height: '25rem',
             marginTop: '0px',
             margin: '10px',
-            background: 'linear-gradient(to bottom right, #FF8300, #f7b008)',
+            background: 'linear-gradient(to bottom right, #e6c200, #ffb700)',
             color: 'black',
             borderRadius: '40px',
             alignItems: 'center',
@@ -45,6 +45,7 @@ export default function ViewProject() {
         >
           <Card.Title style={{
             fontSize: '26px',
+            marginBottom: '-10px',
           }}
           >{projectDetails?.projectName}
           </Card.Title>
