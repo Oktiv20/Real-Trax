@@ -41,19 +41,33 @@ a {
   opacity: 1;
 }
 
+.project-card:hover .wave-image {
+  opacity: 0;
+}
+
 .card-buttons {
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
   position: relative;
   top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1; /* Ensure the card buttons are above the waveform */
+}
+
+.wave-image {
+  opacity: 1;
+  transition: opacity 0.39s ease-in-out;
+  position: relative;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0; /* Ensure the waveform is below the card buttons */
 }
 
 .delete-button {
   position: relative;
-  bottom: 1px;
-  left: 13%;
+  left: 12%;
   transform: translateX(-50%);
 }
 

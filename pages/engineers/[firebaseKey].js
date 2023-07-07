@@ -21,35 +21,40 @@ export default function ViewUser() {
     <div className="text-center my-4 text-white">
       <h1>ENGINEER DETAILS</h1>
       <hr style={{ color: 'white', borderWidth: '3px', opacity: '0.5' }} />
-      <div className="text-center my-4 d-flex justify-content-center flex-wrap">
-        <Card style={{
-          width: '25rem', height: 'auto', margin: '10px', background: 'linear-gradient(to bottom right, #e6c200, #ffb700)', color: 'black', borderRadius: '40px', boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
-        }}
+      <div className="card-container">
+        <Card
+          style={{
+            width: '350px',
+            margin: '50px auto',
+            background: 'linear-gradient(to bottom right, #e6c200, #ffb700)',
+            color: 'black',
+            borderRadius: '40px',
+            justifyContent: 'center',
+            boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
+            opacity: '0.87',
+          }}
         >
-          <Card.Body>
-            <Card.Title style={{
-              fontSize: '35px',
-            }}
-            >{engineerObj?.firstName} {engineerObj?.lastName}
+          <Card.Body style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Card.Title style={{ fontSize: '40px', marginBottom: '10px' }}>
+              {engineerObj?.firstName} {engineerObj?.lastName}
             </Card.Title>
-            <br />
             <Card.Text>
-              Phone Number: {engineerObj?.phoneNumber}
-              <br />
-              <br />
-              Email: {engineerObj?.email}
-              <br />
-              <br />
-              Daily Rate: {engineerObj?.dailyRate}
-              <br />
-              <br />
-              Preferred Genre(s): {preferredGenre}
-              <br />
-              <br />
-              Experience: {engineerObj?.experience}
-              <br />
-              <br />
-              Link to Credits: {engineerObj?.creditsLink}
+              <strong>Phone:</strong> {engineerObj?.phoneNumber}
+            </Card.Text>
+            <Card.Text>
+              <strong>Email:</strong> {engineerObj?.email}
+            </Card.Text>
+            <Card.Text>
+              <strong>Daily Rate:</strong> {engineerObj?.dailyRate}
+            </Card.Text>
+            <Card.Text>
+              <strong>Preferred Genre(s):</strong> {preferredGenre}
+            </Card.Text>
+            <Card.Text>
+              <strong>Experience:</strong> {engineerObj?.experience}
+            </Card.Text>
+            <Card.Text>
+              <strong>Credits Link:</strong> {engineerObj?.creditsLink}
             </Card.Text>
           </Card.Body>
         </Card>
