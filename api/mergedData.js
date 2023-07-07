@@ -1,13 +1,7 @@
 import {
-  getArtistProject, getEngineerBooking, getProjects, getSingleProject,
+  getEngineerBooking, getProjects, getSingleProject,
 } from './projectData';
 import { getEngineer, getSingleUser } from './userData';
-
-const viewUserInfo = (firebaseKey) => new Promise((resolve, reject) => {
-  Promise.all([getSingleUser(firebaseKey)]).then(([userObj]) => {
-    resolve({ ...userObj });
-  }).catch((error) => reject(error));
-});
 
 const viewProjectDetails = (projectFirebaseKey) => new Promise((resolve, reject) => {
   // The getSingleProject function returns a promise. When this promise resolves successfully, the .then() callback is executed, and the resolved value (projectObject) is passed as an argument.
@@ -31,11 +25,14 @@ const viewEngineerDetails = (engineerFirebaseKey) => new Promise((resolve, rejec
 const viewEngineerBookings = (projectFirebaseKey) => new Promise((resolve, reject) => {
   getSingleProject(projectFirebaseKey)
     .then((projectObject) => {
-      getEngineerBooking(projectObject?.engineer_id).then(getArtistProject(projectObject?.artist_id))
-        .then((artistObject) => {
+      const artistId = projectObject?.artist_id;
+      Promise.all([getSingleUser(artistId), Promise.resolve(projectObject)])
+        .then(([artistObject]) => {
           resolve({ artistObject, ...projectObject });
-        });
-    }).catch((error) => reject(error));
+        })
+        .catch(reject);
+    })
+    .catch((error) => reject(error));
 });
 
 const globalSearch = (searchTerm, uid) => new Promise((resolve, reject) => {
@@ -94,5 +91,5 @@ const globalSearch = (searchTerm, uid) => new Promise((resolve, reject) => {
 });
 
 export {
-  viewUserInfo, viewProjectDetails, viewEngineerBookings, viewEngineerDetails, globalSearch,
+  viewProjectDetails, viewEngineerBookings, viewEngineerDetails, globalSearch,
 };

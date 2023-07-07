@@ -145,7 +145,7 @@ export default function UserForm({ obj }) {
             type="checkbox"
             id="isEngineer"
             name="isEngineer"
-            label="Engineer?"
+            label="I am an Engineer"
             checked={formInfo.isEngineer}
             onChange={(e) => {
               setFormInfo((prevState) => ({

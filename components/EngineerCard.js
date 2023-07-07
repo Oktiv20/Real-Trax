@@ -12,7 +12,7 @@ export default function EngineerCard({ engineerObj }) {
   return (
     <>
       <Card style={{
-        width: '350px',
+        width: '380px',
         margin: '10px',
         background: 'linear-gradient(to bottom right, #e6c200, #ffb700)',
         color: 'black',
@@ -26,19 +26,18 @@ export default function EngineerCard({ engineerObj }) {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '110px',
-            width: '100px',
+            height: '113px',
+            width: '115px',
             backgroundColor: 'white',
             borderRadius: '30%',
             marginBottom: '20px',
-            opacity: '0.9',
           }}
           >
             <Card.Img
               variant="top"
               src="Images/engineerImage.png"
               style={{
-                height: '90px', width: '90px', borderRadius: '20%', objectFit: 'cover',
+                height: '90px', width: '91px', borderRadius: '20%', objectFit: 'cover',
               }}
             />
           </div>

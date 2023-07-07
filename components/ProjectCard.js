@@ -15,8 +15,8 @@ function ProjectCard({ projectObj, onUpdate }) {
     <Card
       className="project-card"
       style={{
-        width: '20rem',
-        height: '20rem',
+        width: '23rem',
+        height: '23rem',
         margin: '10px',
         background: 'linear-gradient(to bottom right, #e6c200, #ffb700)',
         color: 'black',
@@ -31,17 +31,17 @@ function ProjectCard({ projectObj, onUpdate }) {
         <br />
         <br />
         <br />
-        <Card.Title style={{ fontSize: '23px' }}>{projectObj?.projectName}</Card.Title>
+        <Card.Title style={{ fontSize: '23px', marginTop: '-10px' }}>{projectObj?.projectName}</Card.Title>
         <br />
         <br />
         <div className="card-buttons">
           <Link href={`/projects/${projectObj?.firebaseKey}`} passHref>
-            <Button variant="dark" className="m-2 view-button" size="sm" style={{ background: 'black', color: 'white' }}>
+            <Button variant="dark" className="m-2 view-button" size="sm" style={{ background: 'black', color: 'white', opacity: '0.91' }}>
               VIEW
             </Button>
           </Link>
           <Link href={`/projects/edit/${projectObj?.firebaseKey}`} passHref>
-            <Button variant="dark" className="m-2 edit-button" size="sm" style={{ background: 'black', color: 'white' }}>
+            <Button variant="dark" className="m-2 edit-button" size="sm" style={{ background: 'black', color: 'white', opacity: '0.91' }}>
               EDIT
             </Button>
           </Link>
@@ -50,10 +50,26 @@ function ProjectCard({ projectObj, onUpdate }) {
             onClick={deleteThisProject}
             className="m-2 delete-button"
             size="sm"
-            style={{ background: 'black', color: 'white' }}
+            style={{ background: 'gray', color: 'white', opacity: '0.91' }}
           >
             DELETE
           </Button>
+        </div>
+        <div
+          className="wave-image"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Card.Img
+            variant="top"
+            src="Images/equalizer.png"
+            style={{
+              height: '150px', width: '150px', marginTop: '-100px',
+            }}
+          />
         </div>
       </Card.Body>
     </Card>

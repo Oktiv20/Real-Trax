@@ -8,7 +8,7 @@ export default function ArtistCard({ artistObj }) {
   return (
     <>
       <Card style={{
-        width: '350px',
+        width: '380px',
         margin: '10px',
         background: 'linear-gradient(to bottom right, #e6c200, #ffb700)',
         color: 'black',
@@ -55,7 +55,7 @@ export default function ArtistCard({ artistObj }) {
           </Card.Text>
           <br />
           <div style={{ display: 'flex' }}>
-            <Link href="/engineerBookings" passHref>
+            <Link href="/projects" passHref>
               <Button variant="dark" style={{ background: 'black', color: 'white', marginRight: '40px' }}>
                 PROJECTS
               </Button>
