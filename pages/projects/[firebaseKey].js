@@ -33,7 +33,7 @@ export default function ViewProject() {
         <Card
           style={{
             width: '30rem',
-            height: '25rem',
+            height: 'auto',
             marginTop: '0px',
             margin: '10px',
             background: 'linear-gradient(to bottom right, #e6c200, #ffb700)',
