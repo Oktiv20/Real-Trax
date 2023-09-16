@@ -30,8 +30,6 @@ Being an independent artist is difficult as it is. I's even more difficult if yo
 # ERD
 [ERD](https://dbdiagram.io/d/6462d995dca9fb07c4233efd)
 
-# Loom Video
-[Loom]()
 
 # Screenshots
 ![Artist Profile View](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Artist%20View.png)
