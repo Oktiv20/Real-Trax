@@ -32,11 +32,11 @@ Being an independent artist is difficult as it is. I's even more difficult if yo
 
 # Screenshots
 ![Artist Profile Page](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Artist%20Profile%20Page.png)
-![Artist Projects Page](https://github.com/Oktiv20/Real-Trax/blob/69a203e656920678fb04fa76b7df0c4739118bd1/public/Images/Artist%20Projects%20Page.png)
-![Artist Project Details Page](https://github.com/Oktiv20/Real-Trax/blob/69a203e656920678fb04fa76b7df0c4739118bd1/public/Images/Artist%20Project%20Details%20Page.png)
-![Engineer Profile Page](https://github.com/Oktiv20/Real-Trax/blob/69a203e656920678fb04fa76b7df0c4739118bd1/public/Images/Engineer%20Profile%20Page.png)
-![Engineer Bookings Page](https://github.com/Oktiv20/Real-Trax/blob/69a203e656920678fb04fa76b7df0c4739118bd1/public/Images/Engineer%20Booking%20Page.png)
-![Engineers View Page](https://github.com/Oktiv20/Real-Trax/blob/69a203e656920678fb04fa76b7df0c4739118bd1/public/Images/Engineers%20Page.png)
+![Artist Projects Page](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Artist%20Project%20Details%20Page.png)
+![Artist Project Details Page](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Artist%20Projects%20Page.png)
+![Engineer Profile Page](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Engineer%20Profile%20Page.png)
+![Engineer Bookings Page](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Engineer%20Booking%20Page.png)
+![Engineers View Page](https://github.com/Oktiv20/Real-Trax/blob/main/public/Images/Engineers%20Page.png)
 
 # Contributors
 
