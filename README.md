@@ -1,5 +1,5 @@
 # Project Name
-[Real-Trax](https://real-trax.netlify.app) (Desktop version only)
+[Real-Trax](https://real-trax.netlify.app)  (Desktop version only)
 
 # Overview
 A CRUD app built with React and Next.js, Real-Trax was created to help independent artists, musicians, and producers connect with experienced and knowledgeable engineers who have the resources it takes to create professional tracks. 
