@@ -65,6 +65,55 @@ a {
   z-index: 0; /* Ensure the waveform is below the card buttons */
 }
 
+/* Add your styles for the sign-in page here */
+.signin-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to bottom right, #333, #555, #e6c200);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.content-container {
+  max-width: 600px;
+  text-align: center;
+}
+
+.welcome-text {
+  font-size: 3rem;
+}
+
+.real-trax-text {
+  color: #e6c200;
+}
+
+.description {
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.record-button {
+  background: #e50404;
+  color: #ffffff;
+  border: 2px solid #e50404;
+  border-radius: 15px;
+  width: 200px;
+  height: 60px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+
 .delete-button {
   position: relative;
   left: 12%;

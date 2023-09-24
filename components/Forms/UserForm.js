@@ -100,16 +100,18 @@ export default function UserForm({ obj }) {
       <Form
         onSubmit={handleSubmit}
         style={{
-          marginLeft: '500px',
+          margin: 'auto', // Center the form horizontally
+          marginTop: '50px', // Create space between form and navbar
           padding: '30px',
           width: '450px',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: '1em',
-          backgroundColor: 'black',
+          background: 'linear-gradient(to bottom right, #e6c200, #ffb700)',
+          color: 'black',
+          borderRadius: '40px',
+          boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
+          opacity: '0.87',
         }}
       >
-        <h2 className="mt-5" style={{ paddingBottom: '50px', color: 'white' }}>
+        <h2 className="mt-2 text-center" style={{ paddingBottom: '30px', color: 'black' }}>
           {obj?.firebaseKey ? 'Update' : 'Create'} User
         </h2>
 
@@ -141,7 +143,7 @@ export default function UserForm({ obj }) {
         {/* A WAY TO HANDLE UPDATES FOR TOGGLES, RADIOS, ETC  */}
         <div>
           <Form.Check
-            className="text-white mb-3"
+            className="text-black mb-3"
             type="checkbox"
             id="isEngineer"
             name="isEngineer"
@@ -196,9 +198,17 @@ export default function UserForm({ obj }) {
         )}
 
         {/* SUBMIT BUTTON  */}
-        <Button variant="dark" type="submit" style={{ color: '#e6c200' }}>
-          {obj?.firebaseKey ? 'Update' : 'Create'} User
-        </Button>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center', // Center horizontally
+          }}
+        >
+          <Button variant="dark" type="submit" style={{ color: '#e6c200', marginBottom: '0px', marginTop: '10px' }}>
+            {obj?.firebaseKey ? 'Update' : 'Create'} User
+          </Button>
+        </div>
       </Form>
     </div>
   );
