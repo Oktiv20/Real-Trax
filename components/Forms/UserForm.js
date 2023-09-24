@@ -182,6 +182,7 @@ export default function UserForm({ obj }) {
                   ...provided,
                   width: '100%',
                   minHeight: '50px',
+                  zIndex: 2,
                 }),
               }}
             />
