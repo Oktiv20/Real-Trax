@@ -17,6 +17,7 @@ function BookingCard({ projectObj }) {
         justifyContent: 'center',
         boxShadow: '0 0 10px 5px rgba(255, 165, 0, 0.5)',
         position: 'relative',
+        opacity: '0.87',
       }}
     >
       <Card.Body>
@@ -32,6 +33,22 @@ function BookingCard({ projectObj }) {
               VIEW
             </Button>
           </Link>
+        </div>
+        <div
+          className="wave-image"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Card.Img
+            variant="top"
+            src="Images/equalizer.png"
+            style={{
+              height: '150px', width: '150px', marginTop: '-100px',
+            }}
+          />
         </div>
       </Card.Body>
     </Card>
